@@ -1,0 +1,30 @@
+{
+    "app": {
+        "port": 9090,
+        "user": "uname",
+        "password": "pwd"
+    },
+    "db": {
+        "server": "http://localhost",
+        "name": "dbname",
+        "port": 80,
+        "user": "dbuser",
+        "password": "dbuserpwd"
+    },
+    "poller": {
+        "enabled": true
+    },
+    "superfeedr": {
+        "enabled": true,
+        "user": "youruser",
+        "password": "yourpwd"
+    },
+    "twitter": {
+        "enabled": true,
+        "user": "yourtwitteruser",
+        "consumer_key": "NNNNNNNNNNNNNNNNNNNNN",
+        "consumer_secret": "222222222222222222222222222222222222222222",
+        "access_token_key": "11111111-TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+        "access_token_secret": "VCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+    }
+}
