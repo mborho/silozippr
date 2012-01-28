@@ -2,7 +2,7 @@
   "author": "Martin Borho <martin@borho.net> (http://borho.net)",
   "name": "silozippr",
   "description": "SiloZippr aims to be a push-based realtime newsreader.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/mborho/silozippr",
   "repository": {
     "type": "git",
@@ -19,21 +19,14 @@
     "ejs":  ">=0.6.1",
     "validator": ">=0.3.9",
     "socket.io": "0.8.7",
-    "socket.io-client": "0.8.7",
     "passport": ">=0.1.5",
     "passport-local": ">=0.1.0",
-    "eventyoshi": "0.1.2",
-    "sax": "0.3.5",
-    "clarinet": "0.5.7",
-    "qs": "0.4.0",
-    "formidable": "1.0.8",
     "feedme": ">=0.1.x",
     "ntwitter": ">=0.2.9-2",
     "dateformat": ">=1.0.x",
     "blueimp-md5": ">=1.0.x",
     "vargs": "0.1.0",
-    "superfeedr": "0.0.4",
-    "mime": "1.2.4"
+    "superfeedr": "0.0.4"
   },
   "devDependencies": {
       "mocha": "0.1.0"
