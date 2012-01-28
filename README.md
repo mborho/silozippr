@@ -32,7 +32,7 @@ Early beta
 Copy config.json.example to config.json. Single services can be enabled/disabled. 
 
 * add the credentials for your CouchDb. You can of course use free CouchDB services like [IrisCouch](http://www.iriscouch.com/service) or [Cloudant](https://cloudant.com/#!/solutions/)!
-* add your wished login into the appp section
+* add your login data into the app section
 * to setup twitter delivery, got to http://dev.twitter.com to create an app and add the required tokens to the twitter part of json.config
 * to enable Superfeedr enter your login and password to the Superfeedr part of the config.json
 
@@ -62,17 +62,17 @@ It's recommended to use a process monitor like [Supervisord](http://supervisord.
 
 #### License (Affero GPL 3)
 
-    Copyright (C) 2012  Martin Borho
+Copyright (C) 2012  Martin Borho
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see http://www.gnu.org/licenses/.
