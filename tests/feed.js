@@ -145,4 +145,18 @@ describe('Feed', function(){
         feed.load();                            
     });    
     
+    it('load invalid url', function(done){
+    
+        var url = 'http://borho.net/',
+            feed = new subscription.FeedLoader(url, cb);
+            
+        function cb(err, feed) {   
+            if(err === null && feed !== undefined) {
+                done(new Error("Error: Feed found")); // Success. No feed.
+            } else {
+                done();
+            }
+        }                
+        feed.load();                            
+    });    
 });
