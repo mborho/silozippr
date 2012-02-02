@@ -129,7 +129,8 @@ app.get('/api/list/docs', checkAjaxSession, function(req, res){
 });
 
 app.get('/api/toc/get', checkAjaxSession, function(req, res) {
-    connector.get_toc(res);
+    var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
+    connector.get_toc(res, skey);
 });
 
 app.post('/api/subs/add', checkAjaxSession, function(req, res) {
