@@ -4,11 +4,13 @@
  * See LICENSE for details.  
  */
 html {
-    font-family: arial,sans-serif;
-    line-height: 1.3;
-    font-size:15px;
-/*     font-size:1em; */
+/*     font-family: arial,sans-serif; */
+/*     line-height: 1.3; */
+/*     font-size:15px; */
 }
+#container .column, #container .columns {
+    margin-left: 5 !important;        
+} 
 a {
     color:#000;
     text-decoration:none;
@@ -17,18 +19,18 @@ a {
     display:none;
 }
 .right {
-    float:left;
+    float:right;
 }
 .left {
-    float:right;
+    float:left;
 }
 .round-5 {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-#main-grid {clear:both;}
-#mainline .grid-10 {
+
+#mainline  {
     margin-left:10px; 
 }
 #header {
@@ -103,7 +105,8 @@ a {
     display:none;
 }
 #content, #settings {
-    padding:5px;
+    padding:0;
+    padding-top:5px;
     position:relative; 
     top:40px;
 }
@@ -130,6 +133,7 @@ a {
 }
 #tool-box {
     margin-bottom:60px;
+     margin-left:0px;
     display:none;
 }    
 .tool-box-inner {
@@ -418,7 +422,7 @@ a {
     color: red;
 }
 #mobile {display:none;}
-@media (max-width: 720px){
+@media (max-width: 770px){
 /*------------------------------------*\
     MAIN
 \*------------------------------------*/
@@ -436,13 +440,6 @@ a {
 }    
 .nav-button {
     line-height:35px;
-}
-[class^="grid-"],
-.grids [class^="grid-"]{
-    width:auto!important;
-    float:none!important;
-    margin:0!important;
-    margin-bottom:5px !important;
 }
 #toc-box {          
     display:none;
@@ -474,6 +471,9 @@ a {
 
 @media (max-width: 420px){
 /* smaller */
+html {
+    font-size: 60%;
+}    
 #nav, #settings-nav {
     padding:0;
     padding-top:8px;
