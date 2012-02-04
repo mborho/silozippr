@@ -126,6 +126,16 @@ app.get('/api/list/docs', checkAjaxSession, function(req, res){
     } else {       
         connector.get_index_docs(res, startkey);
     }        
+}); 
+
+app.get('/api/list/docs/json', checkAjaxSession, function(req, res){ 
+    var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
+    var startkey = (req.query["startkey"]) ? sanitize(req.query["startkey"]).xss() : false;
+    if(skey && skey !== "") {
+        connector.get_source_json(res, skey, startkey);
+    } else {       
+        connector.get_index_json(res, startkey);
+    }        
 });
 
 app.get('/api/toc/get', checkAjaxSession, function(req, res) {
