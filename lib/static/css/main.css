@@ -38,6 +38,7 @@ a {
     height:40px;
     color:#fff;
     background:#000;
+    background: rgba(0, 0, 0, .8);
     width:100% !important;
     z-index:1
 }
@@ -49,7 +50,7 @@ a {
     padding-top:5px;
     margin-bottom:0 !important;
     white-space: nowrap;
-    max-width:846px;
+    max-width:850px;
     margin-right:40px;
 }
 #settings-nav {
