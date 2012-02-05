@@ -3,14 +3,18 @@
  * Licensed under the Affero General Public License version 3 or later. 
  * See LICENSE for details.  
  */
-html {
-/*     font-family: arial,sans-serif; */
-/*     line-height: 1.3; */
-/*     font-size:15px; */
+/* foundation overwritten */
+.row {
+    margin:0;
 }
-#container .column, #container .columns {
-    margin-left: 5 !important;        
-} 
+html, body {
+    line-height: 1.3 !important;
+    color:#333333 !important;
+}
+p {
+    line-height: 1.3 !important;
+    margin-bottom:0px !important;
+}
 a {
     color:#000;
     text-decoration:none;
@@ -29,10 +33,6 @@ a {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-
-#mainline  {
-    margin-left:10px; 
-}
 #header {
     position:fixed; 
     height:40px;
@@ -49,7 +49,8 @@ a {
     padding-top:5px;
     margin-bottom:0 !important;
     white-space: nowrap;
-    max-width:815px;
+    max-width:846px;
+    margin-right:40px;
 }
 #settings-nav {
     display:none;
@@ -105,17 +106,21 @@ a {
     display:none;
 }
 #content, #settings {
-    padding:0;
-    padding-top:5px;
+    padding:5px;
     position:relative; 
     top:40px;
+}
+#content-column {
+    margin-left: 5px;
+}     
+#mainline  {
+    margin:0 5px 0 5px;        
 }
 #view-name-box {
     font-weight:bold;
     font-size:110%;
     line-height:30px;
-    margin-left:10px;
-    margin-bottom:5px !important;    
+    margin:0 5px 5px 5px;
     background:#E8E8E8;      
     border: 1px solid #AAA;   
     box-shadow:1px 1px 3px #000;
@@ -130,39 +135,6 @@ a {
 }
 #total-docs, #total-view-docs {
     min-width:25px;
-}
-#tool-box {
-    margin-bottom:60px;
-     margin-left:0px;
-    display:none;
-}    
-.tool-box-inner {
-    margin: 0 0 5px 0px !important;     
-    padding-bottom:5px;
-    padding-left:5px;
-}
-#tool-box-sum {
-    display:none;
-}
-.tool-box-actions {
-    background:#E8E8E8;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    box-shadow:1px 1px 3px #000;
-    border-radius: 5px;    
-}
-.tool-button {
-    box-shadow:1px 1px 3px #000;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    width:25px;
-    text-align:center;
-    background-color:#fff;
-    padding:0 5px;
-}
-.tool-button:active {
-    box-shadow:inset 1px 1px 3px #000;
 }
 #toc-box {
     width:100%;
@@ -337,6 +309,10 @@ a {
     text-align: center;
     height:40px !important;
 }
+#pushedBox h3 {
+    font-size:1.9rem;
+    font-weight:normal;
+}    
 
 /* settings and forms */
 #settings {
@@ -422,7 +398,7 @@ a {
     color: red;
 }
 #mobile {display:none;}
-@media (max-width: 770px){
+@media (max-width: 767px){
 /*------------------------------------*\
     MAIN
 \*------------------------------------*/
@@ -434,9 +410,11 @@ a {
 }
 #content, #settings {
     top:50px;
+    padding:5px
 }
 #nav, #settings-nav {
     padding:8px 12px 0px 12px;
+    margin-right:0px;
 }    
 .nav-button {
     line-height:35px;
@@ -454,6 +432,16 @@ a {
 #toc-more { 
     display:block;   
 }
+#content-column {
+    margin-left: 0px;
+} 
+#mainline {
+    margin:0px;
+}       
+#view-name-box {
+    margin:0;
+    margin-bottom:5px;
+}
 .tabrow {
     line-height: 35px;
 }
@@ -466,7 +454,7 @@ a {
 }  
 .spinning {
     padding-bottom:0;
-}    
+}
 }
 
 @media (max-width: 420px){
@@ -483,10 +471,7 @@ html {
 }
 .toc-title {
     width:85%
-}    
-#view-name {
-  width:85%  
-} 
+}
 .nav-button {
     margin:0 3px;
 }
