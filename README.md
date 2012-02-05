@@ -5,7 +5,7 @@ SiloZippr aims to be a push-based realtime newsreader. It can combine various ti
 #### SiloZippr is realtime in two ways:
 
 - It combines [node.js](http://nodejs.org), [WebSockets](https://en.wikipedia.org/wiki/Web_Sockets) and [Apache CouchDB](http://couchdb.apache.org/) to build a newsreader, where every new entry to the database will get pushed to your browser, which gives you a down-to-zero delay compared to traditional polling.
-- By using [superfeedr.com](http://superfeedr.com)  you can get updates pushed to you. And when the subscribed feed enables [Pubsubhubbub](https://en.wikipedia.org/wiki/PubSubHubbub) (also known as PuSH) even with no delay. Services using PuSH: wordpress.com, stackoverflow.com, feedburner.com, Google Alerts etc
+- By using [superfeedr.com](http://superfeedr.com) you can get updates pushed to you. And when the subscribed feed enables [Pubsubhubbub](https://en.wikipedia.org/wiki/PubSubHubbub) (also known as PuSH) even with no delay. Services using PuSH: wordpress.com, stackoverflow.com, feedburner.com, Google Alerts etc
 
 #### At the moment three different sources can be used to fill SiloZippr with new entries:
 
@@ -41,7 +41,7 @@ One module, [cradle](https://github.com/cloudhead/cradle), is bundled with SiloZ
 
 Further used:
 
-- [inuit css](http://csswizardry.com/inuitcss/) is used for grid-based css
+- [foundation](http://foundation.zurb.com/) is used for grid-based css
 - [gentleface](http://gentleface.com/free_icon_set.html) icons
 
 #### Process monitoring

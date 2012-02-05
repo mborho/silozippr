@@ -112,7 +112,7 @@ app.get('/logout', function(req, res){
 
 app.get('/', checkSession,  function(req, res){
     res.render('index', {locals: {
-        title: 'Test',
+        title: 'Silozippr',
         docs: false,//docs,
         socket_endpoint: _SOCKET_ENDPOINT
     }});  
