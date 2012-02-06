@@ -10,10 +10,12 @@
 html, body {
     line-height: 1.3 !important;
     color:#333333 !important;
+    font-size: 15px !important;
 }
 p {
     line-height: 1.3 !important;
-    margin-bottom:0px !important;
+    margin-bottom:5px !important;
+    font-size: 15px !important;
 }
 a {
     color:#000;
@@ -311,7 +313,7 @@ a {
     height:40px !important;
 }
 #pushedBox h3 {
-    font-size:1.9rem;
+    font-size:1.5rem;
     font-weight:normal;
 }    
 
