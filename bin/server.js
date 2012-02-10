@@ -150,6 +150,16 @@ app.get('/api/subs/list', checkAjaxSession, function(req, res) {
     connector.get_subs(req, res);
 });
 
+app.get('/api/retweet', checkAjaxSession, function(req, res) {
+    var id = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
+    if(id && twit !== undefined) {
+        db.get(id, function(err, doc) {            
+            if(err || doc.custom === undefined) return res.json({success:false});
+            twit.retweet(res, doc.custom.id);
+        });
+    }
+});
+
 io.set('authorization', function (data, accept) {
     var cookies = parseCookie(data.headers.cookie),
         sessionId = cookies['connect.sid'];
