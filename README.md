@@ -41,7 +41,7 @@ One module, [cradle](https://github.com/cloudhead/cradle), is bundled with SiloZ
 
 Further used:
 
-- [foundation](http://foundation.zurb.com/) is used for grid-based css
+- [bootstrap](http://twitter.github.com/bootstrap/index.html) is used as css framework
 - [gentleface](http://gentleface.com/free_icon_set.html) icons
 
 #### Process monitoring
