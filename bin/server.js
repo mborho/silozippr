@@ -128,6 +128,11 @@ app.get('/api/list/docs', checkAjaxSession, function(req, res){
     }        
 });
 
+app.get('/api/source/clear', checkAjaxSession, function(req, res) {
+    var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
+    if(skey) connector.clear_source(res, skey);
+});
+
 app.get('/api/toc/get', checkAjaxSession, function(req, res) {
     var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
     connector.get_toc(res, skey);

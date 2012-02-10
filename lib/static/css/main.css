@@ -132,9 +132,18 @@ a {
     display:none;
 } 
 #view-name {
-  margin-left:10px;
-  width:90%;
+    margin-left:10px;
+    width:90%;
 } 
+#source-actions {
+    float:right;
+    margin-top:1px;
+    margin-right:5px;
+}
+#source-dropdown {
+    left:-60px;/* !important;*/
+    min-width:50px;/* !important;*/
+}
 #total-view-docs {    
     display:none;
 }
