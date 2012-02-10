@@ -266,8 +266,11 @@ a {
     margin-top:3px;
 }
 .line-meta .dropdown-menu {
-    left:-40px;
+    left:-42px;
     min-width:50px;
+}
+.tweet .line-meta .dropdown-menu {
+    left:-65px;
 }
 .line-content {
     clear:both;
