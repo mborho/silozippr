@@ -52,11 +52,11 @@ It's recommended to use a process monitor like [Supervisord](http://supervisord.
 - archive function
 - share items with the world through a pubsubhubbub enabled feed
 - integration of services to share items, like instapaper, bookmark services etc.
-- more twitter features like posting status updates, retweeting and inline media.
+- more twitter features like posting status updates, <del>retweeting</del> and inline media.
 - handling of malicious markup
 - rebuild UI with Enyo
 - add clients for more silos, like G+ for example
-- reduce dependencies
+- <del>reduce dependencies</del>
 - get it run on PaaS platforms lke http://nodester.com or http://cloudno.de. Problem is node-xmpp dependencies.
 - test, tests
 
