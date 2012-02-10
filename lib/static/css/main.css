@@ -3,6 +3,16 @@
  * Licensed under the Affero General Public License version 3 or later. 
  * See LICENSE for details.  
  */
+
+/* bootstrap overwritten */
+.btn {
+    line-height:10px;
+}
+.dropdown-toggle {
+    padding-top:0px;
+}
+
+
 .mainline {
     margin-left:5px !important;
 }
@@ -141,8 +151,8 @@ a {
     margin-right:5px;
 }
 #source-dropdown {
-    left:-60px;/* !important;*/
-    min-width:50px;/* !important;*/
+    left:-60px;
+    min-width:50px;
 }
 #total-view-docs {    
     display:none;
@@ -230,7 +240,7 @@ a {
     font-size:80%;
     font-weight:bold;
 } 
-.line-del, .subs-del {
+.subs-del {
     float:right;
     border: 1px solid #AAA;
     background-color:#fff;
@@ -247,15 +257,17 @@ a {
     background-position: center center;    
     background-size:14px 14px;
 }
-.line-del:active, .subs-del:active {
+.subs-del:active {
     box-shadow:inset 1px 1px 3px #000;
     background-color: #E8E8E8;
 }    
-.line-del a {
-
+.line-meta .btn-group {
+    float:right;
+    margin-top:3px;
 }
-.line-del:hover, .subs-del:hover {    
-    text-decoration:none;
+.line-meta .dropdown-menu {
+    left:-40px;
+    min-width:50px;
 }
 .line-content {
     clear:both;
