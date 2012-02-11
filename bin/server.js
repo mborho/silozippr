@@ -8,6 +8,7 @@ var nconf = require('nconf')
     , express = require('express')
     , socket_io = require('socket.io')
     , passport = require('passport')
+    , request = require('request')
     , LocalStrategy = require('passport-local').Strategy
     , sessionStore = new express.session.MemoryStore({ reapInterval: 60000 * 10 })
     , parseCookie = require('connect').utils.parseCookie
@@ -150,15 +151,41 @@ app.get('/api/subs/list', checkAjaxSession, function(req, res) {
     connector.get_subs(req, res);
 });
 
-app.get('/api/retweet', checkAjaxSession, function(req, res) {
-    var id = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
-    if(id && twit !== undefined) {
-        db.get(id, function(err, doc) {            
-            if(err || doc.custom === undefined) return res.json({success:false});
-            twit.retweet(res, doc.custom.id);
-        });
+app.post('/api/tweet', checkAjaxSession, function(req, res) {
+    var text = (req.body.text) ? sanitize(req.body.text).xss() : false;
+    if(text && twit !== undefined) {
+        twit.tweet(res, text);
+    } else {
+        return res.json({success:false});
     }
 });
+
+app.post('/api/retweet', checkAjaxSession, function(req, res) {
+    var doc_id = (req.body.id) ? sanitize(req.body.id).xss() : false;
+    if(doc_id && twit !== undefined) {
+        db.get(doc_id, function(err, doc) {            
+            if(err || doc.custom === undefined) return res.json({success:false});
+            return twit.retweet(res, doc.custom.id);
+        });
+    } else {
+        return res.json({success:false});
+    }
+});
+
+app.get('/api/url/short', checkAjaxSession, function(req, res) {
+    var longurl = (req.query["url"]) ? sanitize(req.query["url"]).xss() : false;
+    var api_url = 'http://is.gd/api.php?longurl='+encodeURIComponent(longurl);
+    if(longurl) {        
+        console.log(longurl);
+        var api_req = request(api_url, function (error, response, body) {        
+            if (!error && response.statusCode == 200) {
+                res.json({success:true, short: body, long: longurl});
+            } else {
+                res.json({success:false});
+            }
+        });
+    }    
+}); 
 
 io.set('authorization', function (data, accept) {
     var cookies = parseCookie(data.headers.cookie),

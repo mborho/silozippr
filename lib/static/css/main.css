@@ -344,6 +344,16 @@ a {
     font-weight:normal;
 }    
 
+/* tweeting */
+#tweet-modal {
+    display:none;
+}
+#tweet-modal .modal-body {
+    text-align:center;
+}    
+#tweet-modal textarea {
+    width:95%;
+}    
 /* settings and forms */
 #settings {
     display:none;
