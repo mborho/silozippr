@@ -318,6 +318,9 @@ a {
     font-weight:bold;
     text-decoration:none;
 }    
+.tweet .btn-group a {
+    font-weight:normal;
+}
 .tweet .line-body img {
     float:left;
     margin:5px 8px 5px 0;
@@ -345,7 +348,7 @@ a {
 }    
 
 /* tweeting */
-#tweet-modal {
+#tweet-modal, #retweet-modal {
     display:none;
 }
 #tweet-modal .modal-body {
@@ -354,6 +357,13 @@ a {
 #tweet-modal textarea {
     width:95%;
 }    
+#tweet-count {
+    font-size:small;
+}
+#tweet-spinner, #retweet-spinner {
+    display:none;
+}
+
 /* settings and forms */
 #settings {
     display:none;
