@@ -475,12 +475,10 @@ a {
     margin:0;
     margin-bottom:5px;
 }
-.tabrow {
-    line-height: 35px;
-}
 .tabrow li {
     min-width:80px;
     padding:0 2px;
+    line-height: 35px !important;
 } 
 .tab-view {
     max-width:90%;
