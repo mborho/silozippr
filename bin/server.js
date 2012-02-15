@@ -258,6 +258,12 @@ var initializeStream = function() {
 };
 initializeStream();
 
+process.on('uncaughtException', function (err) {
+  console.log('\n##### Caught exception: ######\n');  
+  console.log(err);
+  console.log('\n#############################\n');  
+});
+
 app.listen(nconf.get('app:port'), function () {
   var addr = app.address();
   console.log(' app listening on http://' + addr.address + ':' + addr.port);
