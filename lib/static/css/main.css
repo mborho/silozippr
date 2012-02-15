@@ -68,48 +68,23 @@ a {
 #header a {
     color:#fff;
 }
-.nav-button {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    box-shadow:1px 1px 3px #000;
-    border-radius: 5px;   
-    padding:0 4px;
-    line-height:30px;
-    background:#fff;
-    color:#000;
-    text-align:center;
-    font-weight:bold;
+#header .btn {
+    line-height:5px;
     margin:0 5px;
-    background-repeat: no-repeat;
-    background-position: center center;         
-    background-color:#fff;
 }
-.nav-button:active {
-    background-color: #959595;
+#header img, #total-docs, #total-view-docs {
+    vertical-align:center;
+    line-height:20px;
+    width:20px;
+    height:20px;
+    font-weight:bold;
 }
-.nav-bg {
-   width:25px;      
-   background-size:24px 24px;
-}    
-#nav-home {
-   background-image: url(../img/home.png);    
-}    
-#nav-settings {
-   background-image: url(../img/settings_cog.png);   
-}   
-#expand {
-   background-image: url(../img/expand.png);    
-}
-#delete-button {
-   background-image: url(../img/brush.png);    
+#total-view-box {    
+    display:none;
 }
 #toc-more {
     display:none;      
-    background-image: url(../img/toc.png);
 }   
-#nav-back {
-    background-image: url(../img/undo.png);
-}    
 .wrapper {
     margin:0;
     padding:0px !important;
@@ -145,12 +120,6 @@ a {
 #source-dropdown {
     left:-60px;
     min-width:50px;
-}
-#total-view-docs {    
-    display:none;
-}
-#total-docs, #total-view-docs {
-    min-width:25px;
 }
 #toc-box {
     width:100%;
@@ -414,20 +383,28 @@ a {
 \*------------------------------------*/
 #header {
     height:50px;
+    padding:0;
 }    
 #mobile {
     display:block;    
 }
 #content, #settings {
     top:50px;
-    padding:5px
+    padding:5px;
+    clear:both;
 }
 #nav, #settings-nav {
-    padding:8px 12px 0px 12px;
+    padding:5px 12px 0px 12px;
     margin-right:0px;
-}    
-.nav-button {
-    line-height:35px;
+}
+#header .btn, {
+    line-height:10px;
+}
+#header img, #total-docs, #total-view-docs {
+    width:25px;
+    height:25px;
+    font-size: 16px;
+    margin:2px;
 }
 #toc-box {          
     display:none;
@@ -475,10 +452,12 @@ html {
 }    
 #nav, #settings-nav {
     padding:0;
-    padding-top:8px;
+    padding-top:6px;
 }    
-.nav-button {
-    padding:0px 5px;
+#nav .btn {
+    line-height:10px;
+    padding:4px;
+    margin:0 2px;
 }
 .toc-title {
     width:85%
