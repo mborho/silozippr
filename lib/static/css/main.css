@@ -5,10 +5,10 @@
  */
 
 /* bootstrap overwritten */
-.btn {
+#mainline .btn {
     line-height:10px;
 }
-.dropdown-toggle {
+#mainline .dropdown-toggle {
     padding-top:0px;
 }
 
@@ -375,10 +375,11 @@ a {
     list-style-type:none;
     margin:0;
 }
-#sources-list li {
+#sources-list li.subs-li {
     margin:6px 0;
     border:1px solid #E9E9E9;
     padding:5px;
+    line-height:25px;
 }
 #sources-list li div {
     margin-left:45px;
