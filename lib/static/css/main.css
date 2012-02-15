@@ -42,11 +42,6 @@ a {
 .left {
     float:left;
 }
-.round-5 {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
 #header {
     position:fixed; 
     height:40px;
@@ -90,7 +85,7 @@ a {
     background-color:#fff;
 }
 .nav-button:active {
-    background-color: #E8E8E8;
+    background-color: #959595;
 }
 .nav-bg {
    width:25px;      
@@ -136,9 +131,6 @@ a {
     font-size:110%;
     line-height:30px;
     margin:0 5px 5px 5px;
-    background:#E8E8E8;      
-    border: 1px solid #AAA;   
-    box-shadow:1px 1px 3px #000;
     display:none;
 } 
 #view-name {
@@ -179,16 +171,10 @@ a {
     padding-left:5px;
     line-height:30px;
     margin-bottom:3px;
-    background:#E8E8E8;
-    border: 1px solid #AAA;
-    box-shadow:1px 1px 3px #000;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;    
      white-space:nowrap; 
 }
 .toc-list li:active {
-    box-shadow:inset 1px 1px 3px #000;
+    box-shadow:inset 1px 1px 1px #959595;
     font-weight:bold;
 }
 .toc-title {
@@ -206,10 +192,10 @@ a {
 
 /* MAINLINE */
 .line-item, .line-item-more, .line-item-next {
-    background:#E8E8E8;  
-    border: 1px solid #AAA;
-    box-shadow:1px 1px 3px #000;
     margin-bottom:5px !important; 
+}
+.well {
+    padding:0px;
 }
 .line-item {}    
 .line-item-more {
@@ -217,10 +203,9 @@ a {
     height:30px !important;
 }    
 .spinning {
-    background: #E8E8E8 url(../img/ajax-loader.gif) center center no-repeat;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    background-image:url(../img/ajax-loader.gif); 
+    background-repeat:no-repeat;
+    background-position:center center;
     padding-bottom:5px;
     margin-bottom:5px !important; 
 } 
@@ -258,8 +243,8 @@ a {
     background-size:14px 14px;
 }
 .subs-del:active {
-    box-shadow:inset 1px 1px 3px #000;
-    background-color: #E8E8E8;
+    box-shadow:inset 1px 1px 1px #959595;
+/*     background-color: #E8E8E8; */
 }    
 .line-meta .btn-group {
     float:right;
@@ -324,7 +309,7 @@ a {
 .tweet .line-body img {
     float:left;
     margin:5px 8px 5px 0;
-    box-shadow:1px 1px 3px #000;
+    box-shadow:1px 1px 3px #959595;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -384,10 +369,7 @@ a {
     margin: 0 0;
     padding: 0 5px;
     width:30%;
-    border: 1px solid #AAA;
     display: inline-block;
-    background:#E8E8E8;  
-    box-shadow:1px 1px 3px #000;       
     white-space:nowrap;
     min-width:140px;
     font-weight:bold;
@@ -397,15 +379,12 @@ a {
     background: #FFF;
 }
 .tabrow li:active {
-    box-shadow:inset 1px 1px 3px #000;
+    box-shadow:inset 1px 1px 1px #959595;
     font-weight:bold;
 }
 #tab-container {}    
 .tab-view {
     max-width:93%;
-    background-color: #E8E8E8;
-    border: 1px solid #AAA;
-    box-shadow:2px 2px 5px #000;
     padding: 10px; 
     margin:auto;
     margin-top:5px;
