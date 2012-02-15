@@ -5,10 +5,10 @@
  */
 
 /* bootstrap overwritten */
-#mainline .btn {
+.mainline .btn {
     line-height:10px;
 }
-#mainline .dropdown-toggle {
+.mainline .dropdown-toggle {
     padding-top:0px;
 }
 
