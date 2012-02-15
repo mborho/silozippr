@@ -174,8 +174,7 @@ a {
      white-space:nowrap; 
 }
 .toc-list li:active {
-    box-shadow:inset 1px 1px 1px #959595;
-    font-weight:bold;
+    background: #E9E9E9;
 }
 .toc-title {
     width:85%;
@@ -225,27 +224,6 @@ a {
     font-size:80%;
     font-weight:bold;
 } 
-.subs-del {
-    float:right;
-    border: 1px solid #AAA;
-    background-color:#fff;
-    margin-top:3px;
-    font-weight:bold;
-    box-shadow:1px 1px 3px #000;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    width:25px;
-    text-align:center;
-    background-image: url(../img/delete_round.png);
-    background-repeat: no-repeat;
-    background-position: center center;    
-    background-size:14px 14px;
-}
-.subs-del:active {
-    box-shadow:inset 1px 1px 1px #959595;
-/*     background-color: #E8E8E8; */
-}    
 .line-meta .btn-group {
     float:right;
     margin-top:3px;
@@ -379,8 +357,7 @@ a {
     background: #FFF;
 }
 .tabrow li:active {
-    box-shadow:inset 1px 1px 1px #959595;
-    font-weight:bold;
+    background-color: #E9E9E9;
 }
 #tab-container {}    
 .tab-view {
@@ -400,19 +377,22 @@ a {
 }
 #sources-list li {
     margin:6px 0;
-    border:1px solid #fff;
+    border:1px solid #E9E9E9;
     padding:5px;
 }
 #sources-list li div {
     margin-left:45px;
     padding:0;
 }    
-.subs-del {
+#sources-list .btn-group {
     margin:0;
-    border-color:red;
     float:left;
     width:30px;
 }
+#sources-list .btn-group a { 
+    text-decoration:none;
+    font-weight:normal;
+}    
 #sources-list .sub-prop {
     font-size:small;
 }
