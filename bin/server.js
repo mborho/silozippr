@@ -240,6 +240,7 @@ var initializeStream = function() {
         console.log("Changes stream starting");  
         db.changes(query).on('response', function (res) { 
             res.on('data', function (change) {
+                console.log("doc received from couchdb");
                 if(change.deleted == undefined 
                     && (change.doc.type == "newsitem" 
                             || change.doc.type == "tweet"
