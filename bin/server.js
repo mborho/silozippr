@@ -238,21 +238,17 @@ var initializeStream = function() {
                 since:info.update_seq
         } 
         console.log("Changes stream starting");  
-        db.changes(query).on('response', function (res) { 
-            res.on('data', function (change) {
-                if(change.deleted == undefined 
-                    && (change.doc.type == "newsitem" 
-                            || change.doc.type == "tweet"
-                                    || change.doc.type == "xmpp")) {
-                    connector.process_pushed(change.doc, pipe);
-                } /*else {
+        var feed = db.changes(query);        
+        feed.follow();
+        feed.on("change", function (change) {
+            if(change.deleted == undefined 
+                && (change.doc.type == "newsitem" 
+                        || change.doc.type == "tweet"
+                                || change.doc.type == "xmpp")) {
+                connector.process_pushed(change.doc, pipe);
+            } /*else {
                     pipe.emit('syncDeleted', { doc: change.doc });
-                }*/
-            });
-            res.on('end', function () {
-                console.log("Changes stream ended, try restarting");        
-                setTimeout(initializeStream, 15000);
-            });
+                }*/                        
         });
     });
 };
