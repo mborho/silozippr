@@ -232,7 +232,9 @@ var lastSeq = false;
 function startChangesStream(startSeq) {
     if(startSeq === undefined) {
         startSeq = lastSeq;
-    };
+    } else {
+        lastSeq = startSeq;
+    }
     var query = {
             include_docs:true,
             since:startSeq
