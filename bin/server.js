@@ -37,7 +37,8 @@ if(nconf.get('poller:enabled')) {
     poller.start();
 }
 
-var connector = new lib.connector.Connector(db);
+var renderer =  new lib.renderer.Renderer(nconf.get('twitter:enabled'));
+var connector = new lib.connector.Connector(db, renderer);
 
 var app = express.createServer();
 var io = socket_io.listen(app);
@@ -224,8 +225,14 @@ var pipe = io.sockets.on('connection', function (socket) {
     });
 });
 
+var process_pushed = function(doc, pipe) {     
+    var processed = {skey: doc.skey, html: '', feed: { title: doc.feed.title }};
+    processed.html = renderer.renderPushed(doc);
+    pipe.emit('news', { doc: processed });
+}
+
 // check couchdb/_changes feed
-changesStream = lib.Changes(db, pipe, connector.process_pushed);
+changesStream = lib.Changes(db, pipe, process_pushed);
 changesStream.init();
 
 process.on('uncaughtException', function (err) {
