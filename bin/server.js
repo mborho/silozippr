@@ -224,69 +224,14 @@ var pipe = io.sockets.on('connection', function (socket) {
     });
 });
 
-
-// couchdb changes stream
-var changesFeed = false;
-var lastSeq = false;
-
-function startChangesStream(startSeq) {
-    if(startSeq === undefined) {
-        startSeq = lastSeq;
-    } else {
-        lastSeq = startSeq;
-    }
-    var query = {
-            include_docs:true,
-            since:startSeq
-    } 
-    console.log("Changes stream starting");  
-    
-    changesFeed = db.changes(query);            
-    changesFeed.follow();
-    
-    changesFeed.on("change", function (change) {
-        lastSeq = change.seq;
-        if(change.deleted == undefined 
-            && (change.doc.type == "newsitem" 
-                    || change.doc.type == "tweet"
-                            || change.doc.type == "xmpp")) {
-            connector.process_pushed(change.doc, pipe);
-        } /*else {
-                pipe.emit('syncDeleted', { doc: change.doc });
-            }*/                        
-    });
-    
-    changesFeed.on('retry', function(info) {
-        console.info('Follow retry');
-        changesFeed.stop()
-        console.log(info);
-    })       
-}    
-
-var initializeStream = function() {
-    db.info(function(err, info) {
-        if (err) {
-            throw new Error(JSON.stringify(err));    
-            console.log("error on stream reconnect");        
-            console.log(JSON.stringify(err));        
-        }
-        console.log("db info fetched");        
-        startChangesStream(info.update_seq);      
-    });
-};
-initializeStream();
+// check couchdb/_changes feed
+changesStream = lib.Changes(db, pipe, connector.process_pushed);
+changesStream.init();
 
 process.on('uncaughtException', function (err) {
   console.log('\n##### Caught exception: ######\n');  
   console.log(err);
   console.log('\n#############################\n');  
-
-  // handle stopped changed feed
-  if(changesFeed.dead === true) {
-      changesFeed = false;
-      setTimeout(startChangesStream, 15000);
-  }
-  
 });
 
 app.listen(nconf.get('app:port'), function () {
