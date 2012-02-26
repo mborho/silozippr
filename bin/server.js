@@ -225,14 +225,8 @@ var pipe = io.sockets.on('connection', function (socket) {
     });
 });
 
-var process_pushed = function(doc, pipe) {     
-    var processed = {skey: doc.skey, html: '', feed: { title: doc.feed.title }};
-    processed.html = renderer.renderPushed(doc);
-    pipe.emit('news', { doc: processed });
-}
-
 // check couchdb/_changes feed
-changesStream = lib.Changes(db, pipe, process_pushed);
+changesStream = lib.Changes(db, pipe, renderer.renderPushed);
 changesStream.init();
 
 process.on('uncaughtException', function (err) {
