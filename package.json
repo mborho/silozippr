@@ -27,7 +27,7 @@
     "blueimp-md5": ">=1.0.x",
     "vargs": "0.1.0",
     "superfeedr": "0.0.4",
-    "follow": "0.7.x"
+    "cradle": "0.6.3"
   },
   "devDependencies": {
       "mocha": "0.1.0"
