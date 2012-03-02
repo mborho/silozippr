@@ -2,7 +2,7 @@
   "author": "Martin Borho <martin@borho.net> (http://borho.net)",
   "name": "silozippr",
   "description": "SiloZippr aims to be a push-based realtime newsreader.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "homepage": "https://github.com/mborho/silozippr",
   "repository": {
     "type": "git",

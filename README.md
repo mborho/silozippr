@@ -36,14 +36,6 @@ Copy config.json.example to config.json. Single services can be enabled/disabled
 * to setup twitter delivery, got to http://dev.twitter.com to create an app and add the required tokens to the twitter part of json.config
 * to enable Superfeedr enter your login and password to the Superfeedr part of the config.json
 
-#### Dependencies
-One module, [cradle](https://github.com/cloudhead/cradle), is bundled with SiloZippr, since it's patched. Waiting for the module getting updated with the bugfixe, so it can be removed from this repository.
-
-Further used:
-
-- [bootstrap](http://twitter.github.com/bootstrap/index.html) is used as css framework
-- [gentleface](http://gentleface.com/free_icon_set.html) icons
-
 #### Process monitoring
 It's recommended to use a process monitor like [Supervisord](http://supervisord.org/) to run SiloZippr.
 
@@ -52,13 +44,19 @@ It's recommended to use a process monitor like [Supervisord](http://supervisord.
 - archive function
 - share items with the world through a pubsubhubbub enabled feed
 - integration of services to share items, like instapaper, bookmark services etc.
-- more twitter features like posting status updates, <del>retweeting</del> and inline media.
+- more twitter features like posting <del>status updates, retweeting</del> and inline media.
 - handling of malicious markup
 - rebuild UI with Enyo
 - add clients for more silos, like G+ for example
 - <del>reduce dependencies</del>
 - get it run on PaaS platforms lke http://nodester.com or http://cloudno.de. Problem is node-xmpp dependencies.
 - test, tests
+
+
+#### css framework / icons used
+
+- [bootstrap](http://twitter.github.com/bootstrap/index.html) is used as css framework
+- [gentleface](http://gentleface.com/free_icon_set.html) icons
 
 #### License (Affero GPL 3)
 
