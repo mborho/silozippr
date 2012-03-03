@@ -28,8 +28,10 @@ if(nconf.get('twitter:enabled')) {
     twit.userstream(nconf.get('twitter:user'));
 }
 
+var superfeedr = false;
 if(nconf.get('superfeedr:enabled')) {
-    lib.superfeedr.listen(db, nconf.get('superfeedr'));
+    superfeedr = new lib.superfeedr.SuperfeedrClient(db, nconf.get('superfeedr'));
+    superfeedr.start()
 }
 
 if(nconf.get('poller:enabled')) {
@@ -141,11 +143,11 @@ app.get('/api/toc/get', checkAjaxSession, function(req, res) {
 });
 
 app.post('/api/subs/add', checkAjaxSession, function(req, res) {
-    connector.add_sub(req, res, nconf.get('superfeedr:enabled'));
+    connector.add_sub(req, res, superfeedr);
 });
 
 app.post('/api/subs/remove', checkAjaxSession, function(req, res) {
-    connector.remove_sub(req, res, nconf.get('superfeedr:enabled'));
+    connector.remove_sub(req, res, superfeedr);
 });
 
 app.get('/api/subs/list', checkAjaxSession, function(req, res) {
