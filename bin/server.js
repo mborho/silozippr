@@ -25,7 +25,7 @@ var db = lib.storage.getDb(nconf.get('db'))
 // libs and services
 if(nconf.get('twitter:enabled')) {
     var twit = new lib.twitter.Twitter(nconf.get('twitter'), db);
-    twit.userstream(nconf.get('twitter:user'));
+    twit.stream();
 }
 
 var superfeedr = false;
