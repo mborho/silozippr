@@ -15,7 +15,7 @@ describe('Feed', function(){
     it('test rdf feed', function(done){
         
         var url = 'http://www.heise.de/newsticker/heise.rdf',
-            feed = new subscription.FeedLoader(url, {}, cb);
+            feed = new subscription.FeedLoader(url, cb);
         function cb(err, feed) {
             if(feed === undefined) {
                 done(new Error("Error: Response not defined"));            
@@ -41,7 +41,7 @@ describe('Feed', function(){
     it('test rss feed', function(done){
         
         var url = 'http://www.spiegel.de/schlagzeilen/tops/index.rss',
-            feed = new subscription.FeedLoader(url, {}, cb);
+            feed = new subscription.FeedLoader(url, cb);
         function cb(err, feed) {
             if(feed === undefined) {
                 done(new Error("Error: Response not defined"));            
@@ -67,7 +67,7 @@ describe('Feed', function(){
     it('test hubbub feed', function(done){
         
         var url = 'http://stackoverflow.com/feeds/tag?tagnames=c%23&sort=newest',
-            feed = new subscription.FeedLoader(url, {}, cb);
+            feed = new subscription.FeedLoader(url, cb);
             
         function cb(err, feed) {
             if(feed === undefined) {
@@ -94,7 +94,7 @@ describe('Feed', function(){
     it('test atom feed', function(done){
     
         var url = 'http://feeds2.feedburner.com/blogspot/Dcni',
-            feed = new subscription.FeedLoader(url, {}, cb);
+            feed = new subscription.FeedLoader(url, cb);
             
         function cb(err, feed) {
             if(feed === undefined) {
@@ -121,7 +121,7 @@ describe('Feed', function(){
     it('test atom feed 2', function(done){
     
         var url = 'http://stackoverflow.com/feeds/tag/javascript',
-            feed = new subscription.FeedLoader(url, {}, cb);
+            feed = new subscription.FeedLoader(url, cb);
             
         function cb(err, feed) {            
             if(feed === undefined) {
@@ -148,7 +148,7 @@ describe('Feed', function(){
     it('load invalid url', function(done){
     
         var url = 'http://borho.net/',
-            feed = new subscription.FeedLoader(url, {}, cb);
+            feed = new subscription.FeedLoader(url, cb);
             
         function cb(err, feed) {   
             if(err === null && feed !== undefined) {
