@@ -39,6 +39,8 @@ if(nconf.get('poller:enabled')) {
     poller.start();
 }
 
+var pubSubHubBub = new lib.pubsub.PubSubHubBub(db);
+
 var renderer =  new lib.renderer.Renderer(nconf.get('twitter:enabled'));
 var connector = new lib.connector.Connector(db, renderer);
 
@@ -189,6 +191,10 @@ app.get('/api/url/short', checkAjaxSession, function(req, res) {
         });
     }    
 }); 
+
+app.get('/push/notify/:docId', function(req, res) {
+    return pubSubHubBub.verify(req, res, req.params.docId);
+});
 
 io.set('authorization', function (data, accept) {
     var cookies = parseCookie(data.headers.cookie),

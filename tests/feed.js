@@ -103,11 +103,11 @@ describe('Feed', function(){
                 done(new Error("Error: No feed found"));                
             } else if( feed.pubSubHub !== "http://pubsubhubbub.appspot.com/" ) {
                 done(new Error("Error: No PubSubHub found"));    
-            } else if( feed.title !== "Google Code Blog" ) {
+            } else if( feed.title !== "Google Developers Blog" ) {
                 done(new Error("Error: Title not found"));
-            } else if( feed.subtitle !== "Updates from Google\'s open source projects." ) {
-                done(new Error("Error: Subtitle not found"));                                                 
-            } else if( feed.link !== "http://googlecode.blogspot.com/" ) {
+/*            } else if( feed.subtitle !== "Updates from Google\'s open source projects." ) {
+                done(new Error("Error: Subtitle not found"));            */                                     
+            } else if( feed.link !== "http://googledevelopers.blogspot.com/" ) {
                 done(new Error("Error: Link not found"));      
             } else if( feed.entries[0].published === undefined ) {
                 done(new Error("Error: Published not found"));                 
