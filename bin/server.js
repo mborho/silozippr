@@ -34,8 +34,8 @@ if(nconf.get('superfeedr:enabled')) {
     superfeedr.start()
 }
 
+var poller = new lib.Poller(db);
 if(nconf.get('poller:enabled')) {
-    var poller = new lib.Poller(db);
     poller.start();
 }
 
@@ -194,6 +194,17 @@ app.get('/api/url/short', checkAjaxSession, function(req, res) {
 
 app.get('/push/notify/:docId', function(req, res) {
     return pubSubHubBub.verify(req, res, req.params.docId);
+});
+
+app.post('/push/notify/:docId', function(req, res) {
+    console.log('push notified');
+    req.on('data', function(chunk) {
+        console.log("Received body data:");
+        var xmlStr = chunk.toString()
+        console.log(xmlStr);
+        poller.fromString(req.params.docId, xmlStr);
+    });
+    return res.send(200);
 });
 
 io.set('authorization', function (data, accept) {

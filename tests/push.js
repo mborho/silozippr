@@ -27,9 +27,9 @@ describe('pUSH', function(){
     });
     after(function(done) {
         db.get(testSub._id, function(err, doc) {
-//             db.remove(doc._id, doc._rev, function(err, doc) {
+            db.remove(doc._id, doc._rev, function(err, doc) {
                 done();
-//             });
+            });
         });        
     });
     
@@ -115,4 +115,6 @@ describe('pUSH', function(){
         });                                 
     });    
       
-});    
+});   
+
+// OKmartin@v220110487425373:~/node-dev/silozippr$ curl -H "Content-Type: application/json" -d '{"bla":"fasel"}' http://couch.borho.net:8990/push/notify/testsub
