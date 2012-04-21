@@ -2,7 +2,8 @@
     "app": {
         "port": 9090,
         "user": "uname",
-        "password": "pwd"
+        "password": "pwd",
+        "url": "http://url.to.yourinstallation.withouttrainlingslash.com"
     },
     "db": {
         "server": "http://localhost",
