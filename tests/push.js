@@ -1,6 +1,8 @@
 var request  = require('request'),
     storage = require('../lib/storage'),
-    nconf = require('nconf');
+    nconf = require('nconf'),
+    PubSubHubBub = require('../lib/pubsubhubbub').PubSubHubBub,
+    subscription  = require('../lib/feed.js');    
     
 nconf.use('file', { file: __dirname+'/../config.json' });
 nconf.load();
@@ -10,10 +12,13 @@ describe('pUSH', function(){
     var db = null;
     var testSub = {
         _id: 'testsub',
-        url: 'https://github.com/mborho/silozippr/commits/master.atom',
+        url: 'http://borho.net/dummy.php',
+        skey: 'bacfb6cc1d3818e4ead1cf1b1c2444444',
+        type: 'subscription',
         pubsub: {
             verified: false,
-            last_verify: 0
+            last_verify: 0,
+            token: "f6904611d12cc33b"
         }
     }
     before(function(done) {
@@ -25,7 +30,7 @@ describe('pUSH', function(){
             done();
         });        
     });
-    after(function(done) {
+    after(function(done) {                    
         db.get(testSub._id, function(err, doc) {
             db.remove(doc._id, doc._rev, function(err, doc) {
                 done();
@@ -47,7 +52,7 @@ describe('pUSH', function(){
  
     it('verify unroute - missing mode', function(done){
         var query = '?hub.topic='+encodeURIComponent(testSub.url);
-        var url = 'http://localhost:8990/push/notify/'+testSub._id+query;        
+        var url = 'http://localhost:8990/push/notify/'+testSub.pubsub.token+query;        
         request({uri:url, method:"GET"}, function (error, response, body) {
             if(response.statusCode !== 400) {
                 done(new Error("Error: Wrong status code, got "+response.statusCode));                            
@@ -62,7 +67,7 @@ describe('pUSH', function(){
         var query = '?hub.mode=subscribe' 
 //                     + '&hub.topic='+encodeURIComponent(testSub.url);
                     +'';
-        var url = 'http://localhost:8990/push/notify/'+testSub._id+query;        
+        var url = 'http://localhost:8990/push/notify/'+testSub.pubsub.token+query;        
         request({uri:url, method:"GET"}, function (error, response, body) {
             if(response.statusCode !== 400) {
                 done(new Error("Error: Wrong status code, got "+response.statusCode));                            
@@ -76,7 +81,7 @@ describe('pUSH', function(){
         var query = '?hub.mode=subscribe' 
                     + '&hub.topic='+encodeURIComponent(testSub.url);
                     +'';
-        var url = 'http://localhost:8990/push/notify/'+testSub._id+query;        
+        var url = 'http://localhost:8990/push/notify/'+testSub.pubsub.token+query;        
         request({uri:url, method:"GET"}, function (error, response, body) {
             if(response.statusCode !== 400) {
                 done(new Error("Error: Wrong status code, got "+response.statusCode));                            
@@ -90,7 +95,7 @@ describe('pUSH', function(){
         var query = '?hub.mode=subscribe' 
                     + '&hub.topic='+encodeURIComponent(testSub.url)
                     + '&hub.challenge=foobla';
-        var url = 'http://localhost:8990/push/notify/'+testSub._id+query;        
+        var url = 'http://localhost:8990/push/notify/'+testSub.pubsub.token+query;        
 
         request({uri:url, method:"GET"}, function (error, response, body) {
             if(response.statusCode !== 200) {
@@ -114,6 +119,24 @@ describe('pUSH', function(){
             }            
         });                                 
     });    
+    
+    it('check sub with pubsubhubbub', function(done) {
+        function cb(err, feed) {                    
+            var pubSubHubBub = new PubSubHubBub(db, nconf.get('app'));
+            pubSubHubBub.handleSub(testSub, feed, function(err, action) {
+                if(err) {
+                    done(new Error("Error occured"));                        
+                } else if(action !== true) {
+                    done(new Error("Subcription not true"));                        
+                } else {
+                    done();
+                }                              
+            });
+            
+        }
+        var feed = new subscription.FeedLoader(testSub.url, cb)        
+        feed.load();                     
+    });
       
 });   
 
