@@ -196,13 +196,13 @@ app.get('/push/notify/:token', function(req, res) {
     return pubSubHubBub.verify(req, res, req.params.token);
 });
 
-app.post('/push/notify/:docId', function(req, res) {
+app.post('/push/notify/:token', function(req, res) {
     console.log('push notified');
     req.on('data', function(chunk) {
         console.log("Received body data:");
         var xmlStr = chunk.toString()
         console.log(xmlStr);
-        poller.fromString(req.params.docId, xmlStr);
+        poller.fromString(req.params.token, xmlStr);
     });
     return res.send(200);
 });
