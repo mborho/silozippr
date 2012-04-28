@@ -200,12 +200,11 @@ app.post('/push/notify/:token', function(req, res) {
     console.log('push notified');
     var xmlStr = "";
     req.on('data', function(chunk) {
-        console.log("Received body data");
+        console.log("Receiving body data");
         xmlStr += chunk.toString()
     });
 
     req.on("end", function() {
-        console.log("Receiving body ended: \n " + xmlStr);
         poller.fromString(req.params.token, xmlStr);
     });
 
