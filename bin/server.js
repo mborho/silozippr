@@ -259,7 +259,7 @@ function _unsubs_loop() {
         db.view('sources/unsubqueue', query, function(err, docs) { 
             if(!err && docs.length > 0) {// && parseInt(docs[0].key) < new Date().getTime()) {                
                 var doc = docs[0].value;
-                if(doc.pubsub.token != undefined) {
+                if(doc.pubsub != undefined && doc.pubsub.token != undefined) {
                     pubSubHubBub.unsubscribe(doc, function(pushErr, unsubscribed) {
                         if(pushErr) console.log(pushErr);
                         db.remove(doc._id, doc._rev, function(err, docs) {
