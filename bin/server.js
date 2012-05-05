@@ -252,6 +252,41 @@ var pipe = io.sockets.on('connection', function (socket) {
 changesStream = lib.Changes(db, pipe, renderer.renderPushed);
 changesStream.init();
 
+// handle unsubscriptions    
+function _unsubs_loop() {
+    var query = {limit:1};       
+    try {
+        db.view('sources/unsubqueue', query, function(err, docs) { 
+            if(!err && docs.length > 0) {// && parseInt(docs[0].key) < new Date().getTime()) {                
+                var doc = docs[0].value;
+                if(doc.pubsub.token != undefined) {
+                    pubSubHubBub.unsubscribe(doc, function(pushErr, unsubscribed) {
+                        if(pushErr) console.log(pushErr);
+                        db.remove(doc._id, doc._rev, function(err, docs) {
+                            if (err) throw new Error(JSON.stringify(err));
+                            else console.log('sub '+doc._id+' removed from db');
+                        }); 
+                    });
+                    setTimeout(_unsubs_loop, 20000);
+                } else {
+                    db.remove(doc._id, doc._rev, function(err, docs) {
+                        if (err) throw new Error(JSON.stringify(err));
+                        else console.log('sub '+doc._id+' removed from db');
+                    }); 
+                    setTimeout(_unsubs_loop, 5000);
+                }
+                
+            } else {
+                setTimeout(_unsubs_loop, 900000);
+            }
+        });
+    } catch(err) {
+        console.log(err);       
+        setTimeout(_unsubs_loop, 900000);
+    }
+}
+setTimeout(_unsubs_loop, 10000);
+    
 process.on('uncaughtException', function (err) {
   console.log('\n##### Caught exception: ######\n');  
   console.log(err);

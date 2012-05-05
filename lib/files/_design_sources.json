@@ -1,6 +1,6 @@
 {
    "_id": "_design/sources",
-   "version": 7,
+   "version": 8,
    "views": {
        "all": {
            "map": "function(doc) {\n\tif(doc.feed.link != undefined) {\n\t\temit(parseInt(doc.created_at), {_id:doc._id,_rev:doc._rev,skey:doc.skey,type:doc.type,title:doc.title,link:doc.link,created_at:doc.created_at,published:doc.published,summary:doc.summary,byline:doc.byline,feed:doc.feed});\n\t}\n}"
@@ -26,6 +26,9 @@
        },
        "pushtoken": {
            "map": "function(doc) {\n\tif(doc.type=='subscription' && doc.pubsub.token != undefined ){\n\t\temit(doc.pubsub.token,doc._id)\n\t}\n}"
+       },
+       "unpushtoken": {
+           "map": "function(doc) {\n\tif(doc.type=='unsubscription' && doc.pubsub.token != undefined ){\n\t\temit(doc.pubsub.token,doc._id)\n\t}\n}"
        }
    },
    "language": "javascript",
