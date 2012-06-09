@@ -197,14 +197,14 @@ app.get('/push/notify/:token', function(req, res) {
 });
 
 app.post('/push/notify/:token', function(req, res) {
-    console.log('push notified');
+    console.log("pushed: notified");
     var xmlStr = "";
     req.on('data', function(chunk) {
-        console.log("Receiving body data");
         xmlStr += chunk.toString()
     });
 
     req.on("end", function() {
+        console.log("pushed: received body data");
         poller.fromString(req.params.token, xmlStr);
     });
 
