@@ -124,6 +124,10 @@ app.get('/', checkSession,  function(req, res){
     }});  
 });
 
+app.post('/api/login', passport.authenticate('local'), function(req, res) {
+    res.json(req.user);
+});
+
 app.get('/api/list/docs', checkAjaxSession, function(req, res){ 
     var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
     var startkey = (req.query["startkey"]) ? sanitize(req.query["startkey"]).xss() : false;
