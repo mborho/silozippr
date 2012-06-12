@@ -5,13 +5,15 @@ SiloZippr aims to be a push-based realtime newsreader. It can combine various ti
 #### SiloZippr is realtime in two ways:
 
 - It combines [node.js](http://nodejs.org), [WebSockets](https://en.wikipedia.org/wiki/Web_Sockets) and [Apache CouchDB](http://couchdb.apache.org/) to build a newsreader, where every new entry to the database will get pushed to your browser, which gives you a down-to-zero delay compared to traditional polling.
-- By using [superfeedr.com](http://superfeedr.com) you can get updates pushed to you. And when the subscribed feed enables [Pubsubhubbub](https://en.wikipedia.org/wiki/PubSubHubbub) (also known as PuSH) even with no delay. Services using PuSH: wordpress.com, stackoverflow.com, feedburner.com, Google Alerts etc
+- Subscription of pubsubhubbub-enabled feeds using the [Pubsubhubbub](https://en.wikipedia.org/wiki/PubSubHubbub) protocol. Services using PubSubHubBub: wordpress.com, feedburner.com, Google Alerts etc
+- (experimental) By using [superfeedr.com](http://superfeedr.com) you can get updates pushed to you.
 
 #### At the moment three different sources can be used to fill SiloZippr with new entries:
 
 * traditional rss/atom feed polling through a builtin feed aggregator.
-* [superfeedr.com](http://superfeedr.com) through their XMPP API. Superfeedr is a really cool service, which handles the feed aggregation in realtime for you. Means: If Superfeedr detects updates for a subscribed feed, SiloZippr gets a push notification from Superfeedr. If the subscribed feed enables Pubsubhubbub the updates will happen in realtime. In fact Superfeedr is a paid service, but new users have 25000 notifications for free at start, so you can test it without any hassle.
 * [Twitter](http://twitter.com) through their [streaming-api](https://dev.twitter.com/docs/streaming-api). You will get new tweets in your timeline with zero delay.
+* (experimental) [superfeedr.com](http://superfeedr.com) through their XMPP API. Superfeedr is a really cool service, which handles the feed aggregation in realtime for you. Means: If Superfeedr detects updates for a subscribed feed, SiloZippr gets a push notification from Superfeedr. If the subscribed feed enables Pubsubhubbub the updates will happen in realtime. In fact Superfeedr is a paid service, but new users have 25000 notifications for free at start, so you can test it without any hassle.
+
 
 #### Current status
 Early beta
@@ -19,7 +21,7 @@ Early beta
 #### Installation
 
 - Install node.js. https://github.com/joyent/node/wiki/Installation or https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
-* Install "libexpat1-dev" for node-xmpp
+* Install "libexpat1-dev" for node-xmpp (when using superfeedr)
 * Install silozippr:
 
 ```
@@ -44,7 +46,7 @@ It's recommended to use a process monitor like [Supervisord](http://supervisord.
 - archive function
 - share items with the world through a pubsubhubbub enabled feed
 - integration of services to share items, like instapaper, bookmark services etc.
-- more twitter features like posting <del>status updates, retweeting</del> and inline media.
+- <del>more twitter features like posting status updates, retweeting and inline media</del>.
 - handling of malicious markup
 - rebuild UI with Enyo
 - add clients for more silos, like G+ for example
