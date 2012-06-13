@@ -128,6 +128,10 @@ app.post('/api/session', passport.authenticate('local'), function(req, res) {
     res.json(req.user);
 });
 
+app.get('/api/me', checkAjaxSession, function(req, res) {
+    res.json(req.user);
+});
+
 app.get('/api/list/docs', checkAjaxSession, function(req, res){ 
     var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
     var startkey = (req.query["startkey"]) ? sanitize(req.query["startkey"]).xss() : false;
