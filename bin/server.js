@@ -124,7 +124,7 @@ app.get('/', checkSession,  function(req, res){
     }});  
 });
 
-app.post('/api/login', passport.authenticate('local'), function(req, res) {
+app.post('/api/session', passport.authenticate('local'), function(req, res) {
     res.json(req.user);
 });
 

@@ -4,7 +4,7 @@ describe('api', function() {
        
     it('verify login failing', function(done) {
         
-        var url = 'http://localhost:8990/api/login';        
+        var url = 'http://localhost:8990/api/session';        
         request({uri:url, method:"POST"}, function (error, response, body) {
             if(response.statusCode != 401) {
                 done(new Error("Error: Wrong status code, got "+response.statusCode));                            
@@ -17,7 +17,7 @@ describe('api', function() {
 
     it('verify login', function(done) {
         
-        var url = 'http://localhost:8990/api/login';        
+        var url = 'http://localhost:8990/api/session';        
         request.post({uri:url, form: {username:"test", password:"test"}}, function (error, response, body) {
             var json = JSON.parse(body);
             if(response.statusCode != 200) {
