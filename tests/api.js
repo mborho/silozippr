@@ -44,7 +44,7 @@ describe('api', function() {
         
     });
     
-    it('get user data failing', function(done) {
+    it('get user data', function(done) {
         
         var url = 'http://localhost:8990/api/me';        
         request.get({uri:url}, function (error, response, body) {
@@ -59,5 +59,54 @@ describe('api', function() {
         });         
         
     });
+    
+    it('get toc', function(done) {
+        
+        var url = 'http://localhost:8990/api/toc/get';        
+        request.get({uri:url}, function (error, response, body) {
+            var json = JSON.parse(body);            
+            if(response.statusCode != 200) {
+                done(new Error("Error: Wrong status code, got "+response.statusCode));      
+            } else if(json.success != true) {                
+                done(new Error("Error: no success, got "+json.success));  
+            } else if(json.rows.length == undefined) {
+                done(new Error("Error: no rows, got "+json.rows));  
+            } else {
+                done(); 
+            }
+        });         
+        
+    });   
+    
+    it('get list', function(done) {
+        
+        var url = 'http://localhost:8990/api/list/docs';        
+        request.get({uri:url, qs: {format: "json"}}, function (error, response, body) {
+            var json = JSON.parse(body);            
+            if(response.statusCode != 200) {
+                done(new Error("Error: Wrong status code, got "+response.statusCode));      
+            } else if(json.success != true) {                
+                done(new Error("Error: no success, got "+json.success));  
+            } else if(json.docs.length == undefined) {
+                done(new Error("Error: no rows, got "+json.rows));  
+            } else {
+                done(); 
+            }
+        });         
+        
+    });    
+    
+    it('logout', function(done) {
+        
+        var url = 'http://localhost:8990/api/logout';        
+        request.get({uri:url}, function (error, response, body) {
+            if(response.statusCode != 200) {
+                done(new Error("Error: Wrong status code, got "+response.statusCode));                   
+            } else {
+                done(); 
+            }
+        });         
+        
+    });    
 
 });    

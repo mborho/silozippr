@@ -128,6 +128,11 @@ app.post('/api/session', passport.authenticate('local'), function(req, res) {
     res.json(req.user);
 });
 
+app.get('/api/logout', function(req, res){
+  req.logOut();
+  res.send('');
+});
+
 app.get('/api/me', checkAjaxSession, function(req, res) {
     res.json(req.user);
 });
@@ -135,10 +140,11 @@ app.get('/api/me', checkAjaxSession, function(req, res) {
 app.get('/api/list/docs', checkAjaxSession, function(req, res){ 
     var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
     var startkey = (req.query["startkey"]) ? sanitize(req.query["startkey"]).xss() : false;
+    var format = (req.query["format"]) ? sanitize(req.query["format"]).xss() : 'html';
     if(skey && skey !== "") {
         connector.get_source_docs(res, skey, startkey);
     } else {       
-        connector.get_index_docs(res, startkey);
+        connector.get_index_docs(res, startkey, format);
     }        
 });
 
