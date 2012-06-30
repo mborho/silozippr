@@ -141,8 +141,8 @@ app.get('/api/list/docs', checkAjaxSession, function(req, res){
     var skey = (req.query["id"]) ? sanitize(req.query["id"]).xss() : false;
     var startkey = (req.query["startkey"]) ? sanitize(req.query["startkey"]).xss() : false;
     var format = (req.query["format"]) ? sanitize(req.query["format"]).xss() : 'html';
-    if(skey && skey !== "") {
-        connector.get_source_docs(res, skey, startkey);
+    if(skey && skey !== "") {        
+        connector.get_source_docs(res, skey, startkey, format);
     } else {       
         connector.get_index_docs(res, startkey, format);
     }        

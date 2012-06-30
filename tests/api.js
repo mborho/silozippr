@@ -80,15 +80,38 @@ describe('api', function() {
     
     it('get list', function(done) {
         
-        var url = 'http://localhost:8990/api/list/docs';        
-        request.get({uri:url, qs: {format: "json"}}, function (error, response, body) {
+        var url = 'http://localhost:8990/api/list/docs?format=json';        
+        request.get({uri:url}, function (error, response, body) {
             var json = JSON.parse(body);            
             if(response.statusCode != 200) {
                 done(new Error("Error: Wrong status code, got "+response.statusCode));      
             } else if(json.success != true) {                
                 done(new Error("Error: no success, got "+json.success));  
+            } else if(json.html) {
+                done(new Error("Error: got html"));                                                  
             } else if(json.docs.length == undefined) {
-                done(new Error("Error: no rows, got "+json.rows));  
+                done(new Error("Error: no rows, got "+json.rows));              
+            } else {
+                done(); 
+            }
+        });         
+        
+    });    
+    
+    
+    it('get source list', function(done) {
+        
+        var url = 'http://localhost:8990/api/list/docs?format=json&id=9a3dc72604878894e69a1746da78eb3c';        
+        request.get({uri:url}, function (error, response, body) {
+            var json = JSON.parse(body);      
+            if(response.statusCode != 200) {
+                done(new Error("Error: Wrong status code, got "+response.statusCode));      
+            } else if(json.success != true) {                
+                done(new Error("Error: no success, got "+json.success));  
+            } else if(json.html) {
+                done(new Error("Error: got html"));                                                  
+            } else if(json.docs.length == undefined) {
+                done(new Error("Error: no rows, got "+json.rows));                  
             } else {
                 done(); 
             }
