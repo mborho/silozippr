@@ -1151,7 +1151,115 @@ body {
         padding: 12px 16px;
 /*         background-color: #333333; */
 }
+.source-item {
+    font-size:120% !important;
+    font-weight:bold !important
+}
 
 .toc-item.onyx-selected {
         background-color: MidnightBlue;
+}
+
+.line-item, .line-item-more, .line-item-next {
+    margin-bottom:5px !important;
+}
+.line-item {}
+.line-item-more {
+    text-align: center;
+    height:30px !important;
+}
+.spinning {
+    background-image:url(../img/ajax-loader.gif);
+    background-repeat:no-repeat;
+    background-position:center center;
+    padding-bottom:5px;
+    margin-bottom:5px !important;
+}
+ .line-item-next {
+    padding-bottom:0px;
+    padding-top:15px;
+ }
+.line-date {
+    float:left;
+    width:85%;
+    height:15px;
+    margin-top:5px;
+    font-size:80%;
+    font-weight:bold;
+}
+.line-content {
+    clear:both;
+/*     padding:0 10px 5px 10px; */
+}
+.line-body {
+     overflow-y:auto;
+}
+.line-body img {
+    max-width:97%;
+    margin:auto;
+    overflow:auto;
+}
+.line-body a {
+    text-decoration:underline;
+}
+.line-body img {
+    margin:5px;
+}
+.line-source {
+    text-align:left;
+    overflow:hidden;
+    white-space:nowrap;
+    font-size:95%;
+}
+.line-title {
+    font-size:110% !important;
+    font-weight:bold !important;
+}
+.line-title a, .tweet a {
+    font-weight:bold;
+}
+.line-title a, .line-source a {
+    color:#000;    
+}
+.line-title a:hover, .line-source a:hover {
+    text-decoration:underline;
+}
+
+.tweet {}
+.tweet .line-content {
+    min-height:47px; 
+}
+.tweet .line-body {}
+.tweet .line-byline {
+    font-size:80%;
+}
+.tweet a {
+    font-weight:bold;
+    text-decoration:none;
+    color:#fff;
+}
+.tweet .line-body img {
+    float:left;
+    margin:5px 8px 5px 0;
+    box-shadow:1px 1px 3px #959595;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    height:40px;
+    width:40px;
+    background:#fff;
+}
+.tweet .line-date {
+    height:20px;
+/*     margin-left:-10px; */
+}
+.tweet .line-date img {
+    height:16px;
+    width:16px;
+    margin-right:5px;
+    float:left;
+} 
+.tweet .tweet-link {
+    float:left;
+    margin-right:5px;
 }
