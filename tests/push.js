@@ -22,7 +22,7 @@ describe('pUSH', function(){
         }
     }
     before(function(done) {
-        db = storage.getDb(nconf.get('db'));
+        db = storage.getDb(nconf.get('db'), false);
         db.save(testSub._id, testSub, function (err, res) {
             if(err) {
                 done(new Error("Error: "+err));                            
