@@ -89,45 +89,6 @@
 	right: 0;
 }
 
-/* /home/martin/owncube/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/AlphaJumper.css */
-
-.enyo-alpha-jumper {
-	text-transform: uppercase;
-	font-size: 11px;
-	xborder-radius: 12px;
-	position: absolute;
-	xbackground: white;
-	text-align: center;
-	right: 10px;
-	z-index: 1;
-	color: #333;
-	padding: 0 14px;
-}
-
-.enyo-alpha-jumper > *:first-child {
-	padding-top: 4px;
-	border-radius: 12px 12px 0 0;
-	border-top: 1px solid #333;
-}
-
-.enyo-alpha-jumper > *:last-child {
-	padding-bottom: 4px;
-	border-radius: 0 0 12px 12px;
-	border-bottom: 1px solid #333;
-}
-
-.enyo-alpha-jumper > * {
-	background: #eee;
-	padding: 1px 4px;
-	border-right: 1px solid #333;
-	border-left: 1px solid #333;
-}
-
-.enyo-alpha-jumper > .active {
-	background: #333;
-	color: white;
-}
-
 /* /home/martin/owncube/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/PulldownList.css */
 
 .enyo-list-pulldown {
@@ -238,6 +199,38 @@
 		max-width: 100%;
 	}
 }
+
+/* /home/martin/owncube/dev/silozippr-client/enyo/tools/../../lib/layout/tree/source/Node.css */
+
+.enyo-node {
+	cursor: default;
+	padding: 4px;
+}
+
+.enyo-node img {
+	vertical-align: middle;
+	padding-right: 6px;
+}
+
+.enyo-node-box {
+	overflow: hidden;
+}
+
+.enyo-node-client {
+	position: relative;
+}
+
+.enyo-animate .enyo-node-box, .enyo-animate .enyo-node-client {
+	transition-property: height, top;
+	transition-duration: 0.2s, 0.2s;
+	-moz-transition-property: height, top;
+	-moz-transition-duration: 0.2s, 0.2s;
+	-o-transition-property: height, top;
+	-o-transition-duration: 0.2s, 0.2s;
+	-webkit-transition-property: height, top;
+	-webkit-transition-duration: 0.2s, 0.2s;
+}
+
 
 /* /home/martin/owncube/dev/silozippr-client/enyo/tools/../../lib/onyx/source/css/onyx.css */
 
@@ -1096,7 +1089,7 @@ button.onyx-button.onyx-blue {
 	min-height: 40px;
 }
 
-/* Spinner.css"
+/* Spinner.css */
 .onyx-spinner {
 	width: 58px;
 	height: 59px;
@@ -1107,6 +1100,37 @@ button.onyx-button.onyx-blue {
 .onyx-spinner.onyx-light {
 	background: url(../lib/onyx/images/spinner-light.gif) no-repeat 0 0;
 }
+
+/* MoreToolbar.css */
+.onyx-more-toolbar {
+	overflow: visible;
+	position: relative;
+	z-index: 10;
+}
+
+.onyx-more-toolbar.active {
+	z-index:11;
+}
+
+.onyx-more-menu {
+	left: auto;
+	right: 0px;
+	min-width: 0;
+}
+
+.onyx-more-toolbar .onyx-more-menu > * {
+	float: right;
+	clear: both;
+	margin: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.onyx-more-button {
+	background-image: url(../lib/onyx/images/more.png);
+	margin: 4px 6px 5px;
+}
+
 
 /* ../source/App.css */
 
