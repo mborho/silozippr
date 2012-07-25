@@ -35,10 +35,14 @@ if(nconf.get('superfeedr:enabled')) {
     superfeedr.start()
 }
 
+var jobQueue = new lib.JobQueue(db);
 var pubSubHubBub = new lib.pubsub.PubSubHubBub(db,nconf.get('app'));
 var poller = new lib.Poller(db,nconf.get('app'));
 if(nconf.get('poller:enabled')) {
-    poller.start();
+    jobQueue.start();
+    jobQueue.on('poll-sub', function(sub) {
+        poller.emit('fetchFeed', sub);
+    });
 }
 
 poller.on('pubsubFeed', function(sub, feed) {
