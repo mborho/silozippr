@@ -4,6 +4,7 @@
  * See LICENSE for details.  
  */
 var nconf = require('nconf')
+    , util = require('util')
     , lib = require('../lib')
     , express = require('express')
     , socket_io = require('socket.io')
@@ -34,12 +35,19 @@ if(nconf.get('superfeedr:enabled')) {
     superfeedr.start()
 }
 
+var pubSubHubBub = new lib.pubsub.PubSubHubBub(db,nconf.get('app'));
 var poller = new lib.Poller(db,nconf.get('app'));
 if(nconf.get('poller:enabled')) {
     poller.start();
 }
 
-var pubSubHubBub = new lib.pubsub.PubSubHubBub(db,nconf.get('app'));
+poller.on('pubsubFeed', function(sub, feed) {
+    util.log('handling pubsubhubbub feed');
+    pubSubHubBub.handleSub(sub, feed,function(err, subscribed) {
+        if(err) util.debug(err);
+        else util.log('poller: subscribed');
+    });
+});
 
 var renderer =  new lib.renderer.Renderer(nconf.get('twitter:enabled'));
 var connector = new lib.connector.Connector(db, renderer);
@@ -83,7 +91,7 @@ function checkAjaxSession(req, res, next) {
         next();
         return;
     }
-    console.log('AJAX UNAUTHORIZED');
+    util.log('AJAX UNAUTHORIZED');
     res.writeHead(401);
     res.end();       
 }
@@ -195,7 +203,7 @@ app.get('/api/url/short', checkAjaxSession, function(req, res) {
     var longurl = (req.query["url"]) ? sanitize(req.query["url"]).xss() : false;
     var api_url = 'http://is.gd/api.php?longurl='+encodeURIComponent(longurl);
     if(longurl) {        
-        console.log(longurl);
+        util.log(longurl);
         var api_req = request(api_url, function (error, response, body) {        
             if (!error && response.statusCode == 200) {
                 res.json({success:true, short: body, long: longurl});
@@ -218,7 +226,7 @@ app.post('/push/notify/:token', function(req, res) {
     });
 
     req.on("end", function() {
-        console.log("pushed: received body data");
+        util.log("pushed: received body data");
         poller.fromString(req.params.token, xmlStr);
     });
 
@@ -229,7 +237,7 @@ io.set('authorization', function (data, accept) {
     var cookies = parseCookie(data.headers.cookie),
         sessionId = cookies['connect.sid'];
     if(!sessionId) {
-        console.log('no session id');
+        util.log('no session id');
         return accept('No session id transmitted.', false);
     } else {    
         sessionStore.get(sessionId, function(err, session) {
@@ -275,17 +283,17 @@ function _unsubs_loop() {
                 var doc = docs[0].value;
                 if(doc.pubsub != undefined && doc.pubsub.token != undefined) {
                     pubSubHubBub.unsubscribe(doc, function(pushErr, unsubscribed) {
-                        if(pushErr) console.log(pushErr);
+                        if(pushErr) util.debug(pushErr);
                         db.remove(doc._id, doc._rev, function(err, docs) {
                             if (err) throw new Error(JSON.stringify(err));
-                            else console.log('sub '+doc._id+' removed from db');
+                            else util.log('sub '+doc._id+' removed from db');
                         }); 
                     });
                     setTimeout(_unsubs_loop, 20000);
                 } else {
                     db.remove(doc._id, doc._rev, function(err, docs) {
                         if (err) throw new Error(JSON.stringify(err));
-                        else console.log('sub '+doc._id+' removed from db');
+                        else util.log('sub '+doc._id+' removed from db');
                     }); 
                     setTimeout(_unsubs_loop, 5000);
                 }
@@ -295,19 +303,19 @@ function _unsubs_loop() {
             }
         });
     } catch(err) {
-        console.log(err);       
+        util.debug(err);       
         setTimeout(_unsubs_loop, 900000);
     }
 }
 setTimeout(_unsubs_loop, 10000);
     
 process.on('uncaughtException', function (err) {
-  console.log('\n##### Caught exception: ######\n');  
-  console.log(err);
-  console.log('\n#############################\n');  
+  util.debug('\n##### Caught exception: ######\n');  
+  util.debug(err);
+  util.debug('\n#############################\n');  
 });
 
 app.listen(nconf.get('app:port'), function () {
   var addr = app.address();
-  console.log(' app listening on http://' + addr.address + ':' + addr.port);
+  util.log(' app listening on http://' + addr.address + ':' + addr.port);
 });
