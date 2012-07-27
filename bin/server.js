@@ -21,38 +21,8 @@ nconf.use('file', { file: _base_path+'/config.json' });
 nconf.load();
 
 // db connection
-var db = lib.storage.getDb(nconf.get('db'))
-
-// libs and services
-if(nconf.get('twitter:enabled')) {
-    var twit = new lib.twitter.Twitter(nconf.get('twitter'), db);
-    twit.stream();
-}
-
-var superfeedr = false;
-if(nconf.get('superfeedr:enabled')) {
-    superfeedr = new lib.superfeedr.SuperfeedrClient(db, nconf.get('superfeedr'));
-    superfeedr.start()
-}
-
-var jobQueue = new lib.JobQueue(db);
-var pubSubHubBub = new lib.pubsub.PubSubHubBub(db,nconf.get('app'));
-var poller = new lib.Poller(db,nconf.get('app'));
-if(nconf.get('poller:enabled')) {
-    jobQueue.start();
-    jobQueue.on('poll-sub', function(sub) {
-        poller.emit('fetchFeed', sub);
-    });
-}
-
-poller.on('pubsubFeed', function(sub, feed) {
-    util.log('handling pubsubhubbub feed');
-    pubSubHubBub.handleSub(sub, feed,function(err, subscribed) {
-        if(err) util.debug(err);
-        else util.log('poller: subscribed');
-    });
-});
-
+var db = lib.storage.getDb(nconf.get('db'))    
+var aggregator =  new lib.Aggregator(db, nconf);
 var renderer =  new lib.renderer.Renderer(nconf.get('twitter:enabled'));
 var connector = new lib.connector.Connector(db, renderer);
 
@@ -171,11 +141,11 @@ app.get('/api/toc/get', checkAjaxSession, function(req, res) {
 });
 
 app.post('/api/subs/add', checkAjaxSession, function(req, res) {
-    connector.add_sub(req, res, superfeedr);
+    connector.add_sub(req, res);
 });
 
 app.post('/api/subs/remove', checkAjaxSession, function(req, res) {
-    connector.remove_sub(req, res, superfeedr);
+    connector.remove_sub(req, res);
 });
 
 app.get('/api/subs/list', checkAjaxSession, function(req, res) {
@@ -184,8 +154,8 @@ app.get('/api/subs/list', checkAjaxSession, function(req, res) {
 
 app.post('/api/tweet', checkAjaxSession, function(req, res) {
     var text = (req.body.text) ? sanitize(req.body.text).xss() : false;
-    if(text && twit !== undefined) {
-        twit.tweet(res, text);
+    if(text) {
+        aggregator.emit('send-tweet', res, text);
     } else {
         return res.json({success:false});
     }
@@ -193,10 +163,10 @@ app.post('/api/tweet', checkAjaxSession, function(req, res) {
 
 app.post('/api/retweet', checkAjaxSession, function(req, res) {
     var doc_id = (req.body.id) ? sanitize(req.body.id).xss() : false;
-    if(doc_id && twit !== undefined) {
+    if(doc_id) {
         db.get(doc_id, function(err, doc) {            
             if(err || doc.custom === undefined) return res.json({success:false});
-            return twit.retweet(res, doc.custom.id);
+            return aggregator.emit('send-retweet', res, doc.custom.id);
         });
     } else {
         return res.json({success:false});
@@ -219,7 +189,7 @@ app.get('/api/url/short', checkAjaxSession, function(req, res) {
 }); 
 
 app.get('/push/notify/:token', function(req, res) {
-    return pubSubHubBub.verify(req, res, req.params.token);
+    return aggregator.pubSubVerify(req, res, req.params.token);
 });
 
 app.post('/push/notify/:token', function(req, res) {
@@ -231,7 +201,7 @@ app.post('/push/notify/:token', function(req, res) {
 
     req.on("end", function() {
         util.log("pushed: received body data");
-        poller.fromString(req.params.token, xmlStr);
+        aggregator.emit('poller.pushed', req.params.token, xmlStr);
     });
 
     return res.send(200);
@@ -277,41 +247,6 @@ var pipe = io.sockets.on('connection', function (socket) {
 // check couchdb/_changes feed
 changesStream = lib.Changes(db, pipe, renderer.renderPushed);
 changesStream.init();
-
-// handle unsubscriptions    
-function _unsubs_loop() {
-    var query = {limit:1};       
-    try {
-        db.view('sources/unsubqueue', query, function(err, docs) { 
-            if(!err && docs.length > 0) {// && parseInt(docs[0].key) < new Date().getTime()) {                
-                var doc = docs[0].value;
-                if(doc.pubsub != undefined && doc.pubsub.token != undefined) {
-                    pubSubHubBub.unsubscribe(doc, function(pushErr, unsubscribed) {
-                        if(pushErr) util.debug(pushErr);
-                        db.remove(doc._id, doc._rev, function(err, docs) {
-                            if (err) throw new Error(JSON.stringify(err));
-                            else util.log('sub '+doc._id+' removed from db');
-                        }); 
-                    });
-                    setTimeout(_unsubs_loop, 20000);
-                } else {
-                    db.remove(doc._id, doc._rev, function(err, docs) {
-                        if (err) throw new Error(JSON.stringify(err));
-                        else util.log('sub '+doc._id+' removed from db');
-                    }); 
-                    setTimeout(_unsubs_loop, 5000);
-                }
-                
-            } else {
-                setTimeout(_unsubs_loop, 900000);
-            }
-        });
-    } catch(err) {
-        util.debug(err);       
-        setTimeout(_unsubs_loop, 900000);
-    }
-}
-setTimeout(_unsubs_loop, 10000);
     
 process.on('uncaughtException', function (err) {
   util.debug('\n##### Caught exception: ######\n');  
