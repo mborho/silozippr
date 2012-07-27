@@ -193,7 +193,7 @@ app.get('/push/notify/:token', function(req, res) {
 });
 
 app.post('/push/notify/:token', function(req, res) {
-    console.log("pushed: notified");
+    util.log("pushed: notified");
     var xmlStr = "";
     req.on('data', function(chunk) {
         xmlStr += chunk.toString()
