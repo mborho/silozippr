@@ -1,6 +1,6 @@
 {
    "_id": "_design/sources",
-   "version": 8,
+   "version": 9,
    "views": {
        "all": {
            "map": "function(doc) {\n\tif(doc.feed.link != undefined) {\n\t\temit(parseInt(doc.created_at), {_id:doc._id,_rev:doc._rev,skey:doc.skey,type:doc.type,title:doc.title,link:doc.link,created_at:doc.created_at,published:doc.published,summary:doc.summary,byline:doc.byline,feed:doc.feed});\n\t}\n}"
@@ -19,10 +19,7 @@
            "map": "function(doc) {\n\tif(doc.type=='subscription') {\n\t\temit(doc.title,{\n\t\t\t_id:doc._id, \n\t\t\t_rev: doc._rev, \n\t\t\ttitle: doc.title, \n\t\t\turl:doc.url,\n\t\t\tcreates: doc.creates,\n\t\t\tnext_check: doc.next_check\n\t\t});\n\t}\n}"
        },
        "queue": {
-           "map": "function(doc) {\nif(doc.type=='subscription' && doc.creates=='newsitem') {\n\temit(parseInt(doc.next_check),doc._id)\n}\n}"
-       },
-       "unsubqueue": {
-           "map": "function(doc) {\nif(doc.type=='unsubscription' && doc.creates=='newsitem') {\n\temit(doc._id, doc)\n}\n}"
+           "map": "function(doc) {\n\tif(doc.type=='subscription' && doc.creates=='newsitem') {\n\t\temit(parseInt(doc.next_check),{_id:doc._id, type:doc.type})\n\t} else if(doc.type=='unsubscription' && doc.creates=='newsitem') {\n\t\temit(0, doc)\n\t}\n}"
        },
        "pushtoken": {
            "map": "function(doc) {\n\tif(doc.type=='subscription' && doc.pubsub.token != undefined ){\n\t\temit(doc.pubsub.token,doc._id)\n\t}\n}"
