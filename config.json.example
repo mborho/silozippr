@@ -15,11 +15,6 @@
     "poller": {
         "enabled": true
     },
-    "superfeedr": {
-        "enabled": true,
-        "user": "youruser",
-        "password": "yourpwd"
-    },
     "twitter": {
         "enabled": true,
         "user": "yourtwitteruser",

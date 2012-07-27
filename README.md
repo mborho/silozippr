@@ -6,13 +6,11 @@ SiloZippr aims to be a push-based realtime newsreader. It can combine various ti
 
 - It combines [node.js](http://nodejs.org), [WebSockets](https://en.wikipedia.org/wiki/Web_Sockets) and [Apache CouchDB](http://couchdb.apache.org/) to build a newsreader, where every new entry to the database will get pushed to your browser, which gives you a down-to-zero delay compared to traditional polling.
 - Subscription of pubsubhubbub-enabled feeds using the [Pubsubhubbub](https://en.wikipedia.org/wiki/PubSubHubbub) protocol. Services using PubSubHubBub: wordpress.com, feedburner.com, Google Alerts etc
-- (experimental) By using [superfeedr.com](http://superfeedr.com) you can get updates pushed to you.
 
 #### At the moment three different sources can be used to fill SiloZippr with new entries:
 
 * traditional rss/atom feed polling through a builtin feed aggregator.
 * [Twitter](http://twitter.com) through their [streaming-api](https://dev.twitter.com/docs/streaming-api). You will get new tweets in your timeline with zero delay.
-* (experimental) [superfeedr.com](http://superfeedr.com) through their XMPP API. Superfeedr is a really cool service, which handles the feed aggregation in realtime for you. Means: If Superfeedr detects updates for a subscribed feed, SiloZippr gets a push notification from Superfeedr. If the subscribed feed enables Pubsubhubbub the updates will happen in realtime. In fact Superfeedr is a paid service, but new users have 25000 notifications for free at start, so you can test it without any hassle.
 
 
 #### Current status
@@ -36,7 +34,6 @@ Copy config.json.example to config.json. Single services can be enabled/disabled
 * add the credentials for your CouchDb. You can of course use free CouchDB services like [IrisCouch](http://www.iriscouch.com/service) or [Cloudant](https://cloudant.com/#!/solutions/)!
 * add your login data into the app section
 * to setup twitter delivery, got to http://dev.twitter.com to create an app and add the required tokens to the twitter part of json.config
-* to enable Superfeedr enter your login and password to the Superfeedr part of the config.json
 
 #### Process monitoring
 It's recommended to use a process monitor like [Supervisord](http://supervisord.org/) to run SiloZippr.
