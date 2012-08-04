@@ -342,23 +342,6 @@
 	padding: 0px 3px;
 }
 
-/* optional */
-
-button.onyx-button.onyx-affirmative {
-	background-color: #91BA07;
-	color: #F1F1F1;
-}
-
-button.onyx-button.onyx-negative {
-	background-color: #C51616;
-	color: #F1F1F1;
-}
-
-button.onyx-button.onyx-blue {
-	background-color: #35A8EE;
-	color: #F1F1F1;
-}
-
 /* Checkbox.css */
 .onyx-checkbox {
 	cursor: pointer;
@@ -996,16 +979,6 @@ button.onyx-button.onyx-blue {
   }
 }
 
-/* optional */
-
-.onyx-dark {
-	background-color: #626368;
-}
-
-.onyx-light {
-	background-color: #cacaca;
-}
-
 /* ProgressButton.css */
 .onyx-progress-button {
 	position: relative;
@@ -1132,6 +1105,38 @@ button.onyx-button.onyx-blue {
 	margin: 4px 6px 5px;
 }
 
+/* some default colors */
+.onyx-dark {
+	background-color: #626368;
+}
+
+.onyx-light {
+	background-color: #cacaca;
+}
+
+.onyx-blue {
+	background-color: #35A8EE;
+	color: #F1F1F1;
+}
+
+.onyx-green {
+	background-color: #91BA07;
+}
+
+.onyx-red {
+	background-color: #C51616;
+}
+
+.onyx-affirmative {
+	background-color: #91BA07;
+	color: #F1F1F1;
+}
+
+.onyx-negative {
+	background-color: #C51616;
+	color: #F1F1F1;
+}
+
 
 /* ../source/App.css */
 
@@ -1149,24 +1154,24 @@ body {
     color: white;
     line-height: 1.3 !important;
     font-size: 14px !important;
+    background-color: #EAEAEA;
 }
 a {
     color:#333;
 }
 .panels > * {
-        width: 240px;
-        box-shadow: -4px -4px 4px rgba(0,0,0,0.3);
+    width: 240px;
+    box-shadow: -4px -4px 4px rgba(0,0,0,0.3);
 }
-
-.list {
-        background: url(../assets/bg.png);        
-}
+.toc {
+    background: url(../assets/bg.png);        
+}    
 .toc-item {
-        position: relative;
-        border-bottom: 1px solid #0E0E0E;
-        padding: 12px 16px;
-        background-color: #333333;
-        clear:both;
+    position: relative;
+    border-bottom: 1px solid #0E0E0E;
+    padding: 12px 16px;
+    background-color: #333333;
+    clear:both;
 }
 .toc-title {
     display:inline;
@@ -1175,6 +1180,9 @@ a {
     margin-left:10px;
     display:inline;
     color:yellow
+}
+.toc .selected {
+    background: url(../assets/bg.png);        
 }
 .pulldown-list {
      font-size: 16px;
@@ -1229,6 +1237,13 @@ a {
     font-size:13px !important;
     font-weight:bold;
 }
+.line-action-icon {
+    float:right;
+    margin-bottom:-15px;
+}
+.line-action-popup {
+    padding:25px;
+}    
 .line-content {
     clear:both;
 /*     padding:0 10px 5px 10px; */
