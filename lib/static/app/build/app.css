@@ -1163,6 +1163,12 @@ a {
     width: 240px;
     box-shadow: -4px -4px 4px rgba(0,0,0,0.3);
 }
+.sum-total {
+    background-color:green !important;
+}    
+.sum-source {
+    background-color:blue !important;
+}    
 .toc {
     background: url(../assets/bg.png);        
 }    
