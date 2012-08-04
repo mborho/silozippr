@@ -152,6 +152,11 @@ app.get('/api/subs/list', checkAjaxSession, function(req, res) {
     connector.get_subs(req, res);
 });
 
+app.post('/api/docs/delete/all', checkAjaxSession, function(req, res) {
+    var docs = (req.body.docs) ? sanitize(req.body.docs).xss() : [];
+    connector.remove_docs(res, {docs:JSON.parse(docs)});
+});
+
 app.post('/api/tweet', checkAjaxSession, function(req, res) {
     var text = (req.body.text) ? sanitize(req.body.text).xss() : false;
     if(text) {
