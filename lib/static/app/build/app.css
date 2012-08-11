@@ -1308,6 +1308,7 @@ a {
 }
 .line-title a, .line-source a {
     color:#000;    
+    text-decoration:none;
 }
 .line-title a:hover, .line-source a:hover {
     text-decoration:underline;
