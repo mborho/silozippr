@@ -1196,7 +1196,11 @@ a {
 }    
 .sum-source {
     background-color:blue !important;
-}    
+}
+.sum-pushed {
+    background-color: purple !important; 
+    color: #F1F1F1;
+}
 .toc {
     background: url(../assets/bg.png);        
 }    
