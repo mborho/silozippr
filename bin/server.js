@@ -84,6 +84,21 @@ app.configure(function() {
     //app.use(basic_auth);
 });
 
+// serve manifest files for webapps
+app.get('/manifest.webapp', function(req, res) {
+  var manifest = fs.readFileSync(_base_path +'/manifest.webapp').toString();
+
+  res.writeHead(200, {'Content-Type': 'application/x-web-app-manifest+json'});
+  res.end(manifest);
+});
+
+// app.get('/manifest.appcache', function(req, res) {
+//   var manifest = fs.readFileSync('manifest.appcache').toString();
+// 
+//   res.writeHead(200, {'Content-Type': 'text/cache-manifest'});
+//   res.end(manifest);
+// });
+
 // routes 
 app.get('/login', function(req, res){
     res.render('login', {layout: false});  

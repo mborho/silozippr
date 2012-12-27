@@ -1,0 +1,14 @@
+{
+  "name": "SiloZippr",
+  "description": "Test as webapp",
+  "launch_path": "/app/index.html",
+  "icons": {
+    "128": "/icon.png"
+  },
+  "installs_allowed_from": ["*"],
+  "developer": {
+    "name": "Martin Borho",
+    "url": "http://martin.borho.net"
+  },
+  "default_locale": "en"
+}
