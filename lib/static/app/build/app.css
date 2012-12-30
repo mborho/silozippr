@@ -1508,10 +1508,10 @@ a {
     padding-bottom:5px;
     margin-bottom:5px !important;
 }
- .line-item-next {
+.line-item-next {
     padding-bottom:0px;
     padding-top:15px;
- }
+}
 .line-date {
     float:left;
     width:85%;
@@ -1526,7 +1526,20 @@ a {
 }
 .line-action-popup {
     padding:25px;
-}    
+}   
+.line-action-popup button {
+    display:block;
+    width:100%;
+}
+.tweet-action-popup {
+    width:90%;
+}
+.tweet-input-decorator {
+    width:98%;
+}
+.tweet-action-popup textarea {
+    width:100%    
+}
 .line-content {
     clear:both;
 /*     padding:0 10px 5px 10px; */
