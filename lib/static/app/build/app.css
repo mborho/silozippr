@@ -1413,6 +1413,11 @@
 
 /* ../source/App.css */
 
+/**
+ * Copyright (c) 2012, Martin Borho. 
+ * Licensed under the Affero General Public License version 3 or later. 
+ * See LICENSE for details.  
+ */
 /*
     Put anything you reference with "url(../source)" in ../assets/
     This way, you can minify your application, and just remove the "source" folder for production
@@ -1482,7 +1487,7 @@ a {
 }
 
 .toc-item.onyx-selected {
-        background-color: MidnightBlue;
+    background-color: MidnightBlue;
 }
 
 .view-name {
@@ -1523,22 +1528,6 @@ a {
 .line-action-icon {
     float:right;
     margin-bottom:-15px;
-}
-.line-action-popup {
-    padding:25px;
-}   
-.line-action-popup button {
-    display:block;
-    width:100%;
-}
-.tweet-action-popup {
-    width:90%;
-}
-.tweet-input-decorator {
-    width:98%;
-}
-.tweet-action-popup textarea {
-    width:100%    
 }
 .line-content {
     clear:both;
@@ -1624,3 +1613,32 @@ a {
     float:left;
     margin-right:5px;
 }
+/*
+ * options drawer
+ */
+ .options-drawer {
+     top:54px;
+     background:#989898;
+     z-index:5;
+ }
+ .options-spinner {
+     height:16px;
+     width:16x;
+ }
+ .item-options {
+    padding:10px; 
+ }
+ .item-options button, .tweet-form-buttons button {
+    margin: 5px !important;
+ }
+ .tweet-form-buttons {
+     padding:10px; 
+ }
+ .tweet-input-decorator {
+    width:100%;
+    background:#FFFFFF;
+}
+.tweet-option textarea {
+    width:100%;
+}
+ 
