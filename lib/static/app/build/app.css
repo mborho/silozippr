@@ -1467,7 +1467,7 @@ a {
 .toc-sum {
     margin-left:10px;
     display:inline;
-    color:yellow
+    color:yellow;
 }
 .toc .selected {
     background: url(../assets/bg.png);        
@@ -1476,9 +1476,9 @@ a {
      font-size: 16px;
 }
 .news-item, .tweet {
-        position: relative;
-        border-bottom: 1px solid #0E0E0E;
-        padding: 2px 10px;
+    position: relative;
+    border-bottom: 1px solid #0E0E0E;
+    padding: 2px 10px;
 /*         background-color: #333333; */
 }
 .source-item {
@@ -1517,6 +1517,9 @@ a {
     padding-bottom:0px;
     padding-top:15px;
 }
+.line-meta {
+    margin-top:4px;
+}    
 .line-date {
     float:left;
     width:85%;
@@ -1534,8 +1537,8 @@ a {
 /*     padding:0 10px 5px 10px; */
 }
 .line-body {
-     overflow-y:auto;
-         font-size: 14px !important;
+    overflow-y:auto;
+    font-size: 14px !important;
     line-height: 1.3 !important;
     margin-bottom: 5px !important;
 }
@@ -1617,16 +1620,34 @@ a {
  * options drawer
  */
  .options-drawer {
-     top:54px;
+/*      top:54px; */
      background:#989898;
      z-index:5;
+     pointer-events: auto
  }
  .options-spinner {
      height:16px;
-     width:16x;
+     width:16px;
+ }
+ .options-close-icon {
+    float:right;
+    display:inline;
+    margin-right:10px;
  }
  .item-options {
     padding:10px; 
+ }
+ .item-options-desc {
+    margin-top:10px;
+    font-size:130%;
+    text-align:center;
+ }
+.item-options-desc a {
+    color:#FFF;
+    text-decoration:none;
+ }
+ .item-options-desc img {
+    display:none;
  }
  .item-options button, .tweet-form-buttons button {
     margin: 5px !important;
@@ -1640,5 +1661,13 @@ a {
 }
 .tweet-option textarea {
     width:100%;
+}
+
+@media (max-width: 420px){
+    
+.options-close-icon {
+    margin-right:5px;
+}
+
 }
  
