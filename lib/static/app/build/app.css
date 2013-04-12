@@ -1,4 +1,65 @@
 
+/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/contextual/source/ContextualLayout.css */
+
+/* ContextualLayout.css - popup positioning and border radius adjustments */
+
+/*for popups above activator*/
+.vertical.above {
+  top: auto;
+  margin-top:-10px;
+  bottom: 100%;
+  margin-bottom: 10px;
+}
+/*for popups below activator*/
+.vertical.below {
+  margin-top:10px;
+}
+/*for popups on the left of the activator*/
+.right.horizontal {
+  margin-left: -11px;
+}
+/*for popups on the right of the activator*/
+.left.horizontal {
+  margin-left: 10px;
+}
+/*corners*/
+/*vertical top corners*/
+/*for popups on the left of the activator*/
+.vertical.right.corner {
+  margin-left: 0px;
+}
+/*for popups on the right of the activator*/
+.vertical.left.corner {
+  margin-left: 0px;
+}
+.vertical.below.left.corner {
+  border-top-right-radius: 0px;
+}
+.vertical.below.right.corner {
+  border-top-left-radius: 0px;
+}
+/*vertical bottom corners*/
+.left.above.corner {
+  border-bottom-right-radius: 0px;
+}
+.right.above.corner {
+  border-bottom-left-radius: 0px;
+}
+/*horizontal bottom corners*/
+.left.low.corner {
+  border-bottom-left-radius: 0px;
+}
+.right.low.corner {
+  border-bottom-right-radius: 0px;
+}
+/*horizontal top corners*/
+.left.high.corner {
+  border-top-left-radius: 0px;
+}
+.right.high.corner {
+  border-top-right-radius: 0px;
+}
+
 /* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/fittable/source/FittableLayout.css */
 
 .enyo-fittable-rows-layout {
@@ -83,9 +144,22 @@
 	height: 1000000px;
 }
 
-.enyo-list-page, .enyo-list-holdingarea {
+.enyo-list-holdingarea {
 	position: absolute;
 	left: 0;
+	right: 0;
+}
+
+.enyo-list-port.horizontal {
+	white-space: nowrap;
+}
+
+.enyo-list-page {
+	position: absolute;
+	left: 0;
+}
+
+.enyo-list-page.vertical {
 	right: 0;
 }
 
@@ -184,6 +258,77 @@
 	-moz-transform: rotate(180deg);
 	-o-transform: rotate(180deg);
 	-ms-transform: rotate(180deg);
+}
+
+/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/GridList.css */
+
+/*
+	Put anything you reference with "url(../lib/layout/list/source)" in ../assets/
+	This way, you can minify your application, and just remove the "source" folder for production
+*/
+.enyo-gridlist {
+	height: 100%;
+	/*activate the GPU for compositing each page */
+  	-webkit-transform: translate3d(0, 0, 0);
+  	z-index: 1;
+}
+.enyo-gridlist-row {
+	display: inline-block;
+	background-color: #000;
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	vertical-align: top;
+	border: 0;
+	padding: 0;
+	margin: 0 auto;
+  	/* TODO: Investigate if these properties cause scrolling performance issues */
+  	/*
+  	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+	*/
+}
+.enyo-gridlist-dummy {
+	display:inline-block;
+	width:auto;
+	height:auto;
+	z-index: -1;
+}
+
+/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/GridListImageItem.css */
+
+/*
+	Put anything you reference with "url(../lib/layout/list/source)" in ../assets/
+	This way, you can minify your application, and just remove the "source" folder for production
+*/
+.enyo-gridlist-imageitem {
+	width: 100%;
+	height: 100%;
+	background: #333;
+	color: #fff;
+}
+.enyo-gridlist-imageitem img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.enyo-gridlist-imageitem .caption, .enyo-gridlist-imageitem .sub-caption {
+	opacity: 0.7;
+	font-weight: bold;
+	text-align: center;
+	font-size: 10pt;
+	text-transform: uppercase;
+	z-index: 10;
+	padding-top: 10px;
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: #fff;
 }
 
 /* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/panels/source/arrangers/Arranger.css */

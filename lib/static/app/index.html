@@ -25,17 +25,7 @@
 
                     var socket = new io.connect(_API_ENDPOINT); 
                     app.setSocket(socket);
-                    socket.on('error', function (reason){
-                        console.error('Unable to connect Socket.IO', reason);
-                    });
 
-                    socket.on('connect', function (){
-                        console.info('successfully established a working connection \o/');
-                    });
-
-                    socket.on('disconnect', function () {
-                        console.info('connection disconnect');
-                    });;
 		</script>
 	</body>
 </html>
