@@ -9,26 +9,27 @@
     "url": "git://github.com/mborho/silozippr.git"
   },
   "engines": {
-    "node": ">=0.4.x"
+    "node": ">=0.9.x"
   },
   "dependencies": {
-    "nconf": "0.5.1",
-    "connect": "2.0.3",
-    "request": ">=2.9.x",
-    "express": "2.5.8",
-    "ejs":  "0.6.1",
-    "validator": "0.4.5",
-    "socket.io": "0.9.2",
-    "passport": "0.1.7",
-    "passport-local": "0.1.2",
-    "feedme": "0.2.2",
-    "ntwitter": "0.2.10",
-    "dateformat": "1.0.2-1.2.3",
+    "nconf": "0.6.7",
+    "connect": "2.7.5",
+    "request": "2.16.6",
+    "express": "3.1.2",
+    "ejs":  "0.8.3",
+    "ejs-locals": "1.0.2",
+    "validator": "0.5.0",
+    "socket.io": "0.9.14",
+    "passport": "0.1.16",
+    "passport-local": "0.1.6",
+    "feedme": "0.2.5",
+    "ntwitter": "0.5.0",
+    "dateformat": "1.0.6-1.2.3",
     "blueimp-md5": "1.0.0",
     "vargs": "0.1.0",
-    "superfeedr": "0.0.4",
-    "follow": "0.7.2",
-    "cradle": "0.6.3"
+    "follow": "0.9.0",
+    "cradle": "0.6.5",
+    "cookie": "0.0.6"
   },
   "devDependencies": {
       "mocha": "0.1.0"

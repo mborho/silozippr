@@ -6,13 +6,18 @@
 var nconf = require('nconf')
     , util = require('util')
     , lib = require('../lib')
+    , engine = require('ejs-locals')
     , express = require('express')
+    , app = express()
+    , http = require('http')
+    , server = http.createServer(app)
     , socket_io = require('socket.io')
     , passport = require('passport')
     , request = require('request')
     , LocalStrategy = require('passport-local').Strategy
     , sessionStore = new express.session.MemoryStore({ reapInterval: 60000 * 10 })
-    , parseCookie = require('connect').utils.parseCookie
+    , parseCookie = require('cookie').parse
+    , parseSignedCookies = require('connect').utils.parseSignedCookies
     , sanitize = require('validator').sanitize
     , _base_path = __dirname+'/..';
 
@@ -26,8 +31,7 @@ var aggregator =  new lib.Aggregator(db, nconf);
 var renderer =  new lib.renderer.Renderer(nconf.get('twitter:enabled'));
 var connector = new lib.connector.Connector(db, renderer);
 
-var app = express.createServer();
-var io = socket_io.listen(app);
+var io = socket_io.listen(server);
 io.set('log level', 2)
 var _SOCKET_ENDPOINT = '';
 
@@ -75,9 +79,10 @@ app.configure(function() {
     app.use(express.static(_base_path + '/lib/static'));
     app.set('views', _base_path + '/lib/views');
     app.set('view engine', 'ejs');
+    app.engine('ejs', engine);
     app.use(express.cookieParser());
     app.use(express.bodyParser());
-    app.use(express.session({store: sessionStore, secret: 'keyboard cat' }));
+    app.use(express.session({store: sessionStore, secret: nconf.get('app:secret') }));
     app.use(passport.initialize());
     app.use(passport.session()); 
     app.use(app.router);
@@ -228,7 +233,8 @@ app.post('/push/notify/:token', function(req, res) {
 });
 
 io.set('authorization', function (data, accept) {
-    var cookies = parseCookie(data.headers.cookie),
+    var signedCookies = parseCookie(data.headers.cookie),//parseCookie(data.headers.cookie),
+        cookies = parseSignedCookies(signedCookies, nconf.get('app:secret'));
         sessionId = cookies['connect.sid'];
     if(!sessionId) {
         util.log('no session id');
@@ -249,7 +255,6 @@ io.set('authorization', function (data, accept) {
 
 var pipe = io.sockets.on('connection', function (socket) {
     socket.on('removeDoc', function (doc) {
-//         console.log(socket.handshake.sessionId+' :: '+socket.handshake.user);
         connector.remove_doc(socket, doc);
     });    
     socket.on('removeDocs', function (data) {
@@ -274,7 +279,7 @@ process.on('uncaughtException', function (err) {
   util.debug('\n#############################\n');  
 });
 
-app.listen(nconf.get('app:port'), function () {
-  var addr = app.address();
-  util.log(' app listening on http://' + addr.address + ':' + addr.port);
+var runningServer = server.listen(nconf.get('app:port'), function () {
+    var addr = runningServer.address();
+    util.log(' app listening on http://' + addr.address + ':' + addr.port);
 });
