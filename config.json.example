@@ -3,7 +3,8 @@
         "port": 9090,
         "user": "uname",
         "password": "pwd",
-        "url": "http://url.to.yourinstallation.withouttrainlingslash.com"
+        "url": "http://url.to.yourinstallation.withouttrainlingslash.com",
+        "secret": "y0u3 s3cret salt h3r3"
     },
     "db": {
         "server": "http://localhost",
