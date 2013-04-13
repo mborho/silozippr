@@ -20,12 +20,8 @@
 	</head>
 	<body class="enyo-unselectable">
 		<script>
-                    var app = new App({fit: true}).write();
+                    var app = new App({fit: true, apiEndpoint: _API_ENDPOINT, io: io}).write();
                     document.onclick= function(event){return false;};
-
-                    var socket = new io.connect(_API_ENDPOINT); 
-                    app.setSocket(socket);
-
 		</script>
 	</body>
 </html>
