@@ -1,5 +1,5 @@
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/contextual/source/ContextualLayout.css */
+/* ../lib/layout/contextual/source/ContextualLayout.css */
 
 /* ContextualLayout.css - popup positioning and border radius adjustments */
 
@@ -60,7 +60,7 @@
   border-top-right-radius: 0px;
 }
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/fittable/source/FittableLayout.css */
+/* ../lib/layout/fittable/source/FittableLayout.css */
 
 .enyo-fittable-rows-layout {
 	position: relative;
@@ -98,6 +98,10 @@
 	white-space: nowrap;
 }
 
+.enyo-locale-right-to-left .enyo-fittable-columns-layout {
+	text-align: right;
+}
+
 .enyo-fittable-columns-layout.enyo-center {
 	text-align: center;
 }
@@ -109,6 +113,10 @@
 	vertical-align: top;
 	display: inline-block;
 	white-space: normal;
+}
+
+.enyo-fittable-columns-layout > table {
+	display: inline-table;
 }
 
 .enyo-fittable-columns-layout.enyo-tool-decorator > * {
@@ -132,7 +140,8 @@
 	margin-bottom: 0 !important;
 }
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/List.css */
+
+/* ../lib/layout/list/source/List.css */
 
 .enyo-list {
 	position: relative;
@@ -197,7 +206,7 @@
 	transition: top 0.1s linear, left 0.1s linear;
 }
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/PulldownList.css */
+/* ../lib/layout/list/source/PulldownList.css */
 
 .enyo-list-pulldown {
 	position: absolute;
@@ -260,7 +269,7 @@
 	-ms-transform: rotate(180deg);
 }
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/GridList.css */
+/* ../lib/layout/list/source/GridList.css */
 
 /*
 	Put anything you reference with "url(../lib/layout/list/source)" in ../assets/
@@ -299,7 +308,7 @@
 	z-index: -1;
 }
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/list/source/GridListImageItem.css */
+/* ../lib/layout/list/source/GridListImageItem.css */
 
 /*
 	Put anything you reference with "url(../lib/layout/list/source)" in ../assets/
@@ -308,20 +317,15 @@
 .enyo-gridlist-imageitem {
 	width: 100%;
 	height: 100%;
-	background: #333;
 	color: #fff;
 }
 .enyo-gridlist-imageitem img {
 	display: block;
 	width: 100%;
-	height: auto;
 }
 .enyo-gridlist-imageitem .caption, .enyo-gridlist-imageitem .sub-caption {
-	opacity: 0.7;
-	font-weight: bold;
 	text-align: center;
 	font-size: 10pt;
-	text-transform: uppercase;
 	z-index: 10;
 	padding-top: 10px;
 	width: 100%;
@@ -330,8 +334,13 @@
 	overflow: hidden;
 	color: #fff;
 }
+.enyo-gridlist-imageitem.disabled {
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+}
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/panels/source/arrangers/Arranger.css */
+
+/* ../lib/layout/panels/source/arrangers/Arranger.css */
 
 .enyo-arranger {
 	position: relative;
@@ -360,7 +369,7 @@
 }
 
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/panels/source/Panels.css */
+/* ../lib/layout/panels/source/Panels.css */
 
 .enyo-panels {
 }
@@ -375,7 +384,7 @@
 	}
 }
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/tree/source/Node.css */
+/* ../lib/layout/tree/source/Node.css */
 
 .enyo-node {
 	cursor: default;
@@ -409,7 +418,7 @@
 }
 
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/layout/imageview/source/ImageViewPin.css */
+/* ../lib/layout/imageview/source/ImageViewPin.css */
 
 
 .pinDebug {
@@ -417,7 +426,7 @@
 	border:1px solid yellow;
 }
 
-/* /home/martin/ubuntuone/dev/silozippr-client/enyo/tools/../../lib/onyx/css/onyx.css */
+/* ../lib/onyx/css/onyx.css */
 
 /* WARNING: This is a generated file for backward-compatibility.  Most      */
 /* usrs should instead modify LESS files.  If you choose to edit this CSS   */
@@ -428,6 +437,9 @@
 /* LESS file.                                                               */
 
 /* Onyx default parameters defined here */
+/* Paths */
+/* application importing Onyx Less files will have to override this  */
+/* variable. Otherwise, Onyx image load will fail with a 404 error  */
 /* Fonts */
 /* ---------------------------------------*/
 /* Text Colors */
@@ -758,6 +770,10 @@
   z-index: 10;
   overflow: visible;
 }
+/* Submenu.css */
+.onyx-submenu {
+  background: rgba(0, 0, 0, 0.25) url(../lib/onyx/images/gradient-invert.png) repeat-x 0 top;
+}
 /* Picker.css */
 .onyx-picker-decorator .onyx-button {
   padding: 10px 18px;
@@ -924,6 +940,148 @@
   padding: 8px 34px;
   font-size: 20px;
   border-radius: 0px;
+}
+/* TabBar.css */
+.onyx-tab-bar {
+  width: 100%;
+  position: relative;
+  z-index: 0;
+  background-color: #cacaca;
+  padding-top: 1px;
+}
+.onyx-tab-bar-scroller {
+  padding-top: 2px;
+}
+.onyx-tab-bar-scroller .enyo-touch-scroller > div {
+  padding: 3px 0px 3px 0px;
+  width: 100%;
+}
+.onyx-tab-line {
+  position: relative;
+  margin-top: -0.1em;
+  border-top: 1px solid #646464;
+  z-index: 2;
+}
+.onyx-tab-rug {
+  position: relative;
+  padding: 0.3em;
+  background-color: #cacaca;
+  z-index: 4;
+}
+/* TabBarItem.css */
+.onyx-tab-item {
+  display: inline;
+  position: relative;
+  border: 1px solid #646464;
+  margin: 0px 2px 0px 2px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #b1b1b1;
+  z-index: 1;
+  padding-top: 0.3em;
+  padding-bottom: 0.7em ;
+  vertical-align: baseline;
+}
+.onyx-tab-item.active {
+  border-bottom: 1px solid #cacaca;
+  background-color: #cacaca;
+  z-index: 3;
+}
+.onyx-tab-item:hover {
+  background-color: #cacaca;
+}
+.onyx-tab-item button {
+  overflow: hidden;
+  margin: 3px;
+  border: 1px solid transparent;
+  background-color: transparent ;
+}
+.onyx-tab-item-dissolve {
+  display: inline-block;
+  height: 90%;
+  width: 2em;
+  top: 2px;
+  right: 1em;
+  position: absolute;
+  background: linear-gradient(to right, #b1b1b1 0%, rgba(177, 177, 177, 0) 100%);
+  /* W3C */
+
+  background: -moz-linear-gradient(right, #b1b1b1 0%, rgba(177, 177, 177, 0) 100%);
+  /* FF3.6+ */
+
+  background: -webkit-linear-gradient(left, rgba(177, 177, 177, 0), #b1b1b1);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -webkit-gradient(linear, right top, left top, color-stop(0%, #b1b1b1), color-stop(100%, rgba(177, 177, 177, 0)));
+  /* Chrome,Safari4+ */
+
+  background: -o-linear-gradient(left, #b1b1b1 0%, rgba(177, 177, 177, 0) 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(left, rgba(177, 177, 177, 0) 0%, #b1b1b1 100%);
+  /* IE10+ */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00b1b1b1, endColorstr=#ffb1b1b1, GradientType=1);
+  /* IE6-9 */
+
+}
+.onyx-tab-item-dissolve.active {
+  background: linear-gradient(to right, #cacaca 0%, rgba(202, 202, 202, 0) 100%);
+  /* W3C */
+
+  background: -moz-linear-gradient(right, #cacaca 0%, rgba(202, 202, 202, 0) 100%);
+  /* FF3.6+ */
+
+  background: -webkit-linear-gradient(left, rgba(202, 202, 202, 0), #cacaca);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -webkit-gradient(linear, right top, left top, color-stop(0%, #cacaca), color-stop(100%, rgba(202, 202, 202, 0)));
+  /* Chrome,Safari4+ */
+
+  background: -o-linear-gradient(left, #cacaca 0%, rgba(202, 202, 202, 0) 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(left, rgba(202, 202, 202, 0) 0%, #cacaca 100%);
+  /* IE10+ */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00cacaca, endColorstr=#ffcacaca, GradientType=1);
+  /* IE6-9 */
+
+}
+.onyx-tab-item-hovered {
+  background: linear-gradient(to right, #cacaca 0%, rgba(202, 202, 202, 0) 100%);
+  /* W3C */
+
+  background: -moz-linear-gradient(right, #cacaca 0%, rgba(202, 202, 202, 0) 100%);
+  /* FF3.6+ */
+
+  background: -webkit-linear-gradient(left, rgba(202, 202, 202, 0), #cacaca);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -webkit-gradient(linear, right top, left top, color-stop(0%, #cacaca), color-stop(100%, rgba(202, 202, 202, 0)));
+  /* Chrome,Safari4+ */
+
+  background: -o-linear-gradient(left, #cacaca 0%, rgba(202, 202, 202, 0) 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(left, rgba(202, 202, 202, 0) 0%, #cacaca 100%);
+  /* IE10+ */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00cacaca, endColorstr=#ffcacaca, GradientType=1);
+  /* IE6-9 */
+
+}
+.onyx-tab-item-close {
+  display: inline-block;
+  margin-right: 3px;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-image: url(../lib/onyx/images/close-inactive.png);
+}
+.onyx-tab-item-close:hover {
+  background-image: url(../lib/onyx/images/close-active.png);
 }
 /* ToggleButton.css */
 .onyx-toggle-button {
