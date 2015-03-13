@@ -83,6 +83,7 @@ app.configure(function() {
     app.use(express.cookieParser());
     app.use(express.bodyParser());
     app.use(express.session({store: sessionStore, secret: nconf.get('app:secret') }));
+    app.use(express.session({store: sessionStore, secret: nconf.get('app:secret'), cookie: {maxAge: new Date(Date.now() + 604800000)} }));
     app.use(passport.initialize());
     app.use(passport.session()); 
     app.use(app.router);
