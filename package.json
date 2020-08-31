@@ -18,7 +18,7 @@
     "express": "3.1.2",
     "ejs":  "0.8.3",
     "ejs-locals": "1.0.2",
-    "validator": "0.5.0",
+    "validator": "13.1.1",
     "socket.io": "0.9.14",
     "passport": "0.1.16",
     "passport-local": "0.1.6",
